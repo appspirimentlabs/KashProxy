@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kash_primary_color">#2196F3</color>
+    <color name="kash_primary_color_dark">#1767A6</color>
+    <color name="kash_primary_accent_color">#FFC107</color>
+
+    <color name="kash_primary_text_color">#000000</color>
+    <color name="kash_primary_text_dim_color">#808191</color>
+    <color name="kash_primary_text_light_color">#ffffff</color>
+    <color name="kash_primary_background">#F6F6F6</color>
+    <color name="kash_primary_background_dark">#DCDCDC</color>
+    <color name="kash_surface">#FFFFFF</color>
+    <color name="kash_check_mark_color">#105F00</color>
+    <color name="kash_rewrite_chip_color">#2196F3</color>
+    <color name="kash_rewrite_chip_color_disabled">#808191</color>
+    <color name="kash_rewrite_chip_text_color_disabled">#11164D</color>
+    <color name="kash_rewrite_chip_text_color">#ffffff</color>
+    <color name="kash_text_error">#E91E1E</color>
+    <color name="kash_chip_rewite_status">#F44336</color>
+    <color name="kash_chip_response_map">#009637</color>
+    <color name="kash_primary_button_color">#2196F3</color>
+    <color name="kash_primary_button_text_color">#ffffff</color>
+    <color name="kash_action_item_grey">#808191</color>
+    <color name="kash_translucent_disabled">#66808191</color>
+</resources>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.appspiriment.kashproxy.ui.model.ResponseMappingModel" />
+
+        <variable
+            name="viewModel"
+            type="com.appspiriment.kashproxy.ui.rewritemappingsheet.ResponseStatusRewriteViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_curvrect_16_top_corner_clr_primary_bg">
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="@dimen/kash_padding_standard_small"
+            android:background="@color/kash_action_item_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ibtn_close"
+            android:layout_width="@dimen/kash_padding_standard_xxxlarge"
+            android:layout_height="@dimen/kash_padding_standard_xxxlarge"
+            android:background="@null"
+            android:foregroundGravity="top"
+            android:src="@drawable/ic_action_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/kash_action_item_grey" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_curvrect_16_top_corner_clr_primary_bg"
+            android:paddingStart="@dimen/kash_padding_standard_xxlarge"
+            android:paddingTop="@dimen/kash_padding_standard_small"
+            android:paddingEnd="@dimen/kash_padding_standard_xxlarge"
+            android:paddingBottom="@dimen/kash_padding_standard_medium"
+            app:layout_constraintTop_toBottomOf="@+id/ibtn_close">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/kash_response_code_map_title"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="22sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_from_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_xxxlarge"
+                android:gravity="center"
+                android:text="@string/kash_convert_status_from"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <EditText
+                android:id="@+id/tvFromCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_small"
+                android:layout_marginEnd="@dimen/kash_padding_standard_large"
+                android:background="@drawable/bg_curvrect_4_strk_transparent_clr_ffffff"
+                android:hint="@string/kash_status_code"
+                android:maxHeight="160dp"
+                android:minHeight="48dp"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.fromCodeChanged(text)}"
+                android:paddingStart="16dp"
+                android:paddingTop="@dimen/kash_padding_standard_xsmall"
+                android:paddingEnd="16dp"
+                android:paddingBottom="@dimen/kash_padding_standard_xsmall"
+                android:singleLine="true"
+                android:inputType="number"
+                app:errorRes="@{viewModel.fromCodeError}"
+                android:imeOptions="actionNext"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/img_down_chev"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_from_title">
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/tv_from_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/kash_please_select_a_value"
+                android:textColor="@color/kash_text_error"
+                android:textSize="14sp"
+                app:isVisible="@{viewModel.fromCodeError != null}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFromCode" />
+
+
+            <ImageView
+                android:id="@+id/img_down_chev"
+                android:layout_width="@dimen/kash_padding_standard_xxlarge"
+                android:layout_height="@dimen/kash_padding_standard_xxlarge"
+                android:src="@drawable/ic_right_double_arrow_chevron"
+                app:layout_constraintBottom_toBottomOf="@+id/tvFromCode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvFromCode"
+                app:tint="@color/kash_rewrite_chip_color" />
+
+
+            <TextView
+                android:id="@+id/tv_to_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/kash_to_status"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/img_down_chev"
+                app:layout_constraintStart_toStartOf="@+id/tvToCode"
+                app:layout_constraintTop_toTopOf="@+id/tv_from_title" />
+
+            <EditText
+                android:id="@+id/tvToCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/kash_padding_standard_large"
+                android:layout_marginTop="@dimen/kash_padding_standard_small"
+                android:background="@drawable/bg_curvrect_4_strk_transparent_clr_ffffff"
+                android:hint="@string/kash_status_code"
+                android:maxHeight="160dp"
+                android:minHeight="48dp"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.toCodeChanged(text)}"
+                android:paddingStart="16dp"
+                android:paddingTop="@dimen/kash_padding_standard_xsmall"
+                android:paddingEnd="16dp"
+                android:paddingBottom="@dimen/kash_padding_standard_xsmall"
+                android:singleLine="true"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                app:onDone="@{()->viewModel.saveMapping()}"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="14sp"
+                app:errorRes="@{viewModel.toCodeError}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_down_chev"
+                app:layout_constraintTop_toBottomOf="@id/tv_to_title" />
+
+            <TextView
+                android:id="@+id/tv_to_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/kash_please_select_a_value"
+                android:textColor="@color/kash_text_error"
+                android:textSize="14sp"
+                app:isVisible="@{viewModel.toCodeError != null}"
+                app:layout_constraintStart_toStartOf="@+id/tvToCode"
+                app:layout_constraintTop_toBottomOf="@+id/tvToCode" />
+
+
+            <Button
+                style="@style/KashButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_xxxlarge"
+                android:layout_marginBottom="@dimen/kash_padding_standard_xlarge"
+                android:onClick="@{()->viewModel.saveMapping()}"
+                android:text="@string/kash_add_mapping"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_to_error" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

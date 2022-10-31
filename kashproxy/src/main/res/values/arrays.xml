@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="kash_protocol">
+        <item>https</item>
+        <item>http</item>
+    </string-array>
+
+    <string-array name="kash_responsecode">
+        <item>200</item>
+        <item>400</item>
+        <item>500</item>
+    </string-array>
+</resources>

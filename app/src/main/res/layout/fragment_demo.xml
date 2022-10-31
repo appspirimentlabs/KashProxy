@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.appspiriment.kashproxy.demo.ui.DemoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/kash_primary_background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/kash_padding_standard_xxlarge">
+
+
+            <TextView
+                android:id="@+id/tv_host_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kash_host"
+                android:textColor="@color/kash_primary_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/host_spinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/host_spinner" />
+
+            <Spinner
+                android:id="@+id/host_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/kash_padding_standard_small"
+                android:background="@drawable/bg_curvrect_4_strk_transparent_clr_ffffff"
+                android:entries="@array/host"
+                android:minWidth="80dp"
+                android:minHeight="@dimen/kash_padding_standard_xxxlarge"
+                android:paddingStart="@dimen/kash_padding_standard_medium"
+                android:paddingTop="@dimen/kash_padding_standard_xsmall"
+                android:paddingEnd="@dimen/kash_padding_standard_medium"
+                android:paddingBottom="@dimen/kash_padding_standard_xsmall"
+                app:layout_constraintStart_toEndOf="@+id/tv_host_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:selectedValue="@={viewModel.host}" />
+
+
+            <TextView
+                android:id="@+id/tv_path_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kash_path_title"
+                android:textColor="@color/kash_primary_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/path_spinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/path_spinner" />
+
+            <Spinner
+                android:id="@+id/path_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/kash_padding_standard_small"
+                android:layout_marginTop="@dimen/kash_padding_standard_large"
+                android:background="@drawable/bg_curvrect_4_strk_transparent_clr_ffffff"
+                android:entries="@array/paths"
+                android:minWidth="80dp"
+                android:minHeight="@dimen/kash_padding_standard_xxxlarge"
+                android:paddingStart="@dimen/kash_padding_standard_medium"
+                android:paddingTop="@dimen/kash_padding_standard_xsmall"
+                android:paddingEnd="@dimen/kash_padding_standard_medium"
+                android:paddingBottom="@dimen/kash_padding_standard_xsmall"
+                app:layout_constraintStart_toEndOf="@+id/tv_path_title"
+                app:layout_constraintTop_toBottomOf="@+id/host_spinner"
+                app:selectedValue="@={viewModel.path}" />
+
+
+            <ImageView
+                android:layout_width="@dimen/kash_padding_standard_xxxlarge"
+                android:layout_height="@dimen/kash_padding_standard_xxxlarge"
+                android:src="@drawable/ic_action_copy"
+                android:padding="@dimen/kash_padding_standard_small"
+                app:layout_constraintBottom_toBottomOf="@id/path_spinner"
+                app:layout_constraintTop_toTopOf="@id/host_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{()->viewModel.copyUrl()}"
+                app:tint="@color/kash_primary_button_color" />
+            <CheckBox
+                android:id="@+id/chk_enable_map_response"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/kash_padding_standard_xxxlarge"
+                android:layout_marginTop="@dimen/kash_padding_standard_large"
+                android:layout_marginEnd="@dimen/kash_padding_standard_medium"
+                android:buttonTint="@color/kash_check_mark_color"
+                android:checked="@={viewModel.mappingEnabled}"
+                android:paddingStart="@dimen/kash_padding_standard_xsmall"
+                android:text="@string/kash_enable_mapping"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_view_mapping"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/path_spinner" />
+
+            <TextView
+                android:id="@+id/tv_view_mapping"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/view_mappings"
+                android:textColor="@color/kash_primary_button_color"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:onClick="@{()->viewModel.showMappings()}"
+                app:layout_constraintBottom_toBottomOf="@+id/chk_enable_map_response"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chk_enable_map_response" />
+
+            <Button
+                android:id="@+id/get_data_cta"
+                style="@style/KashButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_large"
+                android:onClick="@{()->viewModel.fetchApiResult()}"
+                android:text="@string/get_data_cta"
+                app:layout_constraintTop_toBottomOf="@+id/chk_enable_map_response" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/kash_padding_standard_xlarge"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/get_data_cta"
+                tools:context=".ui.maplist.ResponseMapListFragment">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:isVisible="@{viewModel.apiResult.status != 0}"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/tv_api_response_code_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/response"
+                        android:textColor="@color/kash_primary_text_color"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_api_response_code"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_api_response_code" />
+
+                    <TextView
+                        android:id="@+id/tv_api_response_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/kash_padding_standard_medium"
+                        android:text="@{viewModel.apiResult.status + ``}"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@{viewModel.apiResult.status == 200 ? @color/green : @color/red}"
+                        app:layout_constraintStart_toEndOf="@+id/tv_api_response_code_title"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_api_response_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/kash_padding_standard_large"
+                        android:text="@string/kash_response_body"
+                        android:textColor="@color/kash_primary_text_color"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_api_response_code" />
+
+                    <TextView
+                        android:id="@+id/tv_api_response"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/kash_padding_standard_small"
+                        android:background="@color/kash_primary_background_dark"
+                        android:padding="@dimen/kash_padding_standard_medium"
+                        android:text="@{viewModel.apiResult.data??viewModel.apiResult.error.message}"
+                        android:textColor="@color/kash_primary_text_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_api_response_title" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/kash_translucent_disabled"
+            android:clickable="true"
+            app:isVisible="@{viewModel.isLoading}"
+            tools:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="kash_padding_standard_none">0dp</dimen>
+    <dimen name="kash_padding_standard_xxsmall">2dp</dimen>
+    <dimen name="kash_padding_standard_xsmall">4dp</dimen>
+    <dimen name="kash_padding_standard_small">8dp</dimen>
+    <dimen name="kash_padding_standard_medium">16dp</dimen>
+    <dimen name="kash_padding_standard_large">20dp</dimen>
+    <dimen name="kash_padding_standard_xlarge">24dp</dimen>
+    <dimen name="kash_padding_standard_xxlarge">32dp</dimen>
+    <dimen name="kash_padding_standard_xxxlarge">48dp</dimen>
+    <dimen name="kash_eleveation_xsmall">2dp</dimen>
+    <dimen name="kash_eleveation_small">4dp</dimen>
+</resources>

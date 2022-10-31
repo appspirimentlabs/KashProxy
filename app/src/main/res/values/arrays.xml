@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="host">
+        <item>digithreads.com</item>
+        <item>Api 1</item>
+        <item>Api 2</item>
+        <item>Api 3</item>
+    </string-array>
+
+    <string-array name="paths">
+        <item>Empty</item>
+        <item>Path 1</item>
+        <item>Path 2</item>
+        <item>Path 3</item>
+    </string-array>
+
+
+</resources>

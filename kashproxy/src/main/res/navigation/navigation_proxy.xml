@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@+id/kashMapListFragment">
+
+
+    <fragment
+        android:id="@+id/kashMapListFragment"
+        android:name="com.appspiriment.kashproxy.ui.maplist.ResponseMapListFragment"
+        android:label="MapListFragment">
+        <action
+            android:id="@+id/addMapping"
+            app:destination="@id/kashResponseMappingFragment"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/kashMapListFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/showMappingDetails"
+            app:destination="@id/kashResponseMappingFragment"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/kashMapListFragment"
+            app:popUpToInclusive="false" >
+            <argument
+                android:name="mappingId"
+                app:argType="string"/>
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/kashResponseMappingFragment"
+        android:name="com.appspiriment.kashproxy.ui.mappingdetail.ResponseMappingFragment"
+        android:label="Mapping Detail">
+        <action
+            android:id="@+id/showCodeRewriteSheet"
+            app:destination="@id/kashResponseCodeRewriteSheet"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/kashResponseMappingFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="mappingId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null"/>
+    </fragment>
+
+    <dialog
+        android:id="@+id/kashResponseCodeRewriteSheet"
+        android:name="com.appspiriment.kashproxy.ui.rewritemappingsheet.ResponseStatusRewriteSheet"
+        android:label="Response Code Rewrite" />
+</navigation>

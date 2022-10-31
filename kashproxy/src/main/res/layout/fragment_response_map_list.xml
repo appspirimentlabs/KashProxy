@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.appspiriment.kashproxy.ui.maplist.ResponseMapListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/kash_primary_background"
+        tools:context=".ui.maplist.ResponseMapListFragment">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="@dimen/kash_padding_standard_none"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/kash_padding_standard_xlarge"
+            android:layout_marginEnd="@dimen/kash_padding_standard_xlarge"
+            android:gravity="start"
+            android:text="@string/kash_mapping_list_title"
+            android:textColor="@color/kash_primary_text_color"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/chk_enable_map_response"
+            app:layout_constraintEnd_toStartOf="@+id/chk_enable_map_response"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/chk_enable_map_response"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/kash_padding_standard_xxxlarge"
+            android:layout_marginTop="@dimen/kash_padding_standard_small"
+            android:layout_marginEnd="@dimen/kash_padding_standard_xlarge"
+            android:buttonTint="@color/kash_check_mark_color"
+            android:checked="@={viewModel.mappingEnabled}"
+            android:paddingStart="@dimen/kash_padding_standard_xsmall"
+            android:text="@string/kash_enable_mapping"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcy_mappings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/kash_padding_standard_large"
+            android:layout_marginBottom="@dimen/kash_padding_standard_large"
+            android:orientation="vertical"
+            android:alpha="@{viewModel.mappingEnabled ? 1f : 0.5f}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/btn_add_mapping"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:listitem="@layout/layout_proxy_mapping_list_item" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/rcy_mappings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:elevation="@dimen/kash_eleveation_small"
+            android:text="@string/kash_mapping_disabled"
+            app:isVisible="@{!viewModel.mappingEnabled}"
+            android:background="@color/kash_translucent_disabled"/>
+        <Button
+            android:id="@+id/btn_add_mapping"
+            style="@style/KashButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/kash_padding_standard_xxlarge"
+            android:layout_marginStart="@dimen/kash_padding_standard_xlarge"
+            android:layout_marginEnd="@dimen/kash_padding_standard_xlarge"
+            app:isVisible="@{viewModel.mappingEnabled}"
+            android:onClick="@{()->viewModel.addMapping()}"
+            android:text="@string/kash_add_mapping"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
