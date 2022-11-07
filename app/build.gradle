@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.appspiriment.kashproxy.demo'
-    compileSdk 33
+    compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
         applicationId "com.appspiriment.kashproxy.demo"
-        minSdk 24
-        targetSdk 33
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -49,7 +49,7 @@ android {
 
 dependencies {
 
-    implementation project(":kashproxy")
+    implementation project(":chucker")
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.activity:activity-compose:1.6.1'

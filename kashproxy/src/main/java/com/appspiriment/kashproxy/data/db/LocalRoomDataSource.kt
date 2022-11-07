@@ -8,13 +8,13 @@ class LocalRoomDataSource(private val dao: ResponseMappingDao) : LocalDataSource
         dao.insertProxyMapping(mapping.toEntity())
     }
 
-    override suspend fun deleteProxyMapping(id: Int) {
-        dao.deleteProxyMapping(id)
+    override suspend fun deleteProxyMapping(url: String) {
+        dao.deleteProxyMapping(url)
     }
 
     override suspend fun getAllMapping() = dao.getAllMapping().map{ it.toModel()}
 
-    override suspend fun getMappingById(id: Int) = dao.getMappingById(id).toModel()
+    override suspend fun getMappingByUrl(url: String) = dao.getMappingByUrl(url)?.toModel()
 
     override suspend fun getMappingByHost(
         protocol: String,

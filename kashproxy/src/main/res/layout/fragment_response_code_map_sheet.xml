@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_curvrect_16_top_corner_clr_primary_bg">
+        android:background="@drawable/kashproxy_bg_curvrect_16_top_corner_clr_primary_bg">
 
         <View
             android:layout_width="80dp"
@@ -34,7 +34,7 @@
             android:layout_height="@dimen/kash_padding_standard_xxxlarge"
             android:background="@null"
             android:foregroundGravity="top"
-            android:src="@drawable/ic_action_close"
+            android:src="@drawable/kashproxy_ic_action_close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/kash_action_item_grey" />
@@ -42,7 +42,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_curvrect_16_top_corner_clr_primary_bg"
+            android:background="@drawable/kashproxy_bg_curvrect_16_top_corner_clr_primary_bg"
             android:paddingStart="@dimen/kash_padding_standard_xxlarge"
             android:paddingTop="@dimen/kash_padding_standard_small"
             android:paddingEnd="@dimen/kash_padding_standard_xxlarge"
@@ -73,12 +73,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
             <EditText
-                android:id="@+id/tvFromCode"
+                android:id="@+id/tvHttpCode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/kash_padding_standard_small"
                 android:layout_marginEnd="@dimen/kash_padding_standard_large"
-                android:background="@drawable/bg_curvrect_4_strk_transparent_clr_ffffff"
+                android:background="@drawable/kashproxy_bg_curvrect_4_strk_transparent_clr_ffffff"
                 android:hint="@string/kash_status_code"
                 android:maxHeight="160dp"
                 android:minHeight="48dp"
@@ -110,18 +110,18 @@
                 android:textSize="14sp"
                 app:isVisible="@{viewModel.fromCodeError != null}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFromCode" />
+                app:layout_constraintTop_toBottomOf="@+id/tvHttpCode" />
 
 
             <ImageView
                 android:id="@+id/img_down_chev"
                 android:layout_width="@dimen/kash_padding_standard_xxlarge"
                 android:layout_height="@dimen/kash_padding_standard_xxlarge"
-                android:src="@drawable/ic_right_double_arrow_chevron"
-                app:layout_constraintBottom_toBottomOf="@+id/tvFromCode"
+                android:src="@drawable/kashproxy_ic_right_double_arrow_chevron"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHttpCode"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvFromCode"
+                app:layout_constraintTop_toTopOf="@+id/tvHttpCode"
                 app:tint="@color/kash_rewrite_chip_color" />
 
 
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/kash_padding_standard_large"
                 android:layout_marginTop="@dimen/kash_padding_standard_small"
-                android:background="@drawable/bg_curvrect_4_strk_transparent_clr_ffffff"
+                android:background="@drawable/kashproxy_bg_curvrect_4_strk_transparent_clr_ffffff"
                 android:hint="@string/kash_status_code"
                 android:maxHeight="160dp"
                 android:minHeight="48dp"

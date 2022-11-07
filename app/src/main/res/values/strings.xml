@@ -5,6 +5,7 @@
     <string name="get_data_cta">Get Data</string>
     <string name="enable_mapping">Enable Response Mapping</string>
     <string name="response">Response:</string>
-    <string name="view_mappings">View Mappings</string>
+    <string name="view_mappings">Mappings</string>
     <string name="url_copied">Url copied to clipboard!</string>
+    <string name="view_logs">Logs</string>
 </resources>

@@ -16,14 +16,15 @@ import androidx.room.PrimaryKey
  *********************************************************/
 @Entity(tableName = "responseMapping")
 data class ResponseMappingEntity(
-    @PrimaryKey(autoGenerate= true) val mappingId: Int?,
-    val apiUrl: String,
+    @PrimaryKey val apiUrl: String,
     val protocol: String,
     val apiHost: String,
     val path: String?,
     val queries: String?,
-    val isResponseStatusRewrite: Boolean,
-    val isResponseMapping: Boolean,
-    val responseStatusMap: String?,
-    val responseBody: String?
+    val mapToSuccess: Boolean,
+    val httpCode: Int,
+    val mappingNickName: String?,
+    val successResponse: String?,
+    val errorResponse: String?,
+    val mappingEnabled: Boolean
 )

@@ -18,7 +18,7 @@ class KashProxyInterceptor internal constructor(val context: Context) : Intercep
 
         return try {
             getMappedResponse(chain.proceed(builder.build()))
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             if (context.isKashProxyMappingEnabled()) {
                 Response.Builder().apply {
                     protocol(if(chain.request().isHttps) Protocol.HTTP_1_1 else Protocol.HTTP_2)
@@ -30,8 +30,6 @@ class KashProxyInterceptor internal constructor(val context: Context) : Intercep
                     getMappedResponse(it)
                 }
             } else throw e
-        } catch (ex: Exception) {
-           throw ex
         }
     }
 
@@ -57,19 +55,17 @@ class KashProxyInterceptor internal constructor(val context: Context) : Intercep
 
                         KashProxyApp
                             .getMappingRepository()
-                            .getMappingByUrl(it.request.url.toString())
-                            .forEach { mapping ->
-                                if (mapping.isResponseStatusRewrite
-                                    && mapping.responseStatusMap.containsKey(it.code)
-                                ) {
-                                    mapping.responseStatusMap[it.code]?.let { codemap ->
-                                        if (codemap.second) code(codemap.first)
+                            .getMappingByUrl(it.request.url.toString())?.let{ mapping ->
+                                if(mapping.mappingEnabled){
+                                    if(mapping.mapToSuccess){
+                                        body(ResponseBody.create(null, mapping.successResponse?:""))
+                                        message(mapping.successResponse?:"")
+                                        code(200)
+                                    } else {
+                                        body(ResponseBody.create(null, mapping.errorResponse?:""))
+                                        message(mapping.errorResponse?:"")
+                                        code(mapping.httpCode)
                                     }
-                                }
-
-                                if(mapping.isResponseMapping){
-                                    body(ResponseBody.create(null, mapping.responseBody?:""))
-                                    message(mapping.responseBody?:"")
                                 }
                             }
                     }.build()

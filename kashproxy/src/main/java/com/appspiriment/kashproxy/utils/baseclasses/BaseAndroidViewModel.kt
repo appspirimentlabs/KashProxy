@@ -35,8 +35,8 @@ import kotlinx.coroutines.launch
 open class BaseAndroidViewModel(application: Application) : AndroidViewModel(application) {
 
     val navigation = SingleLiveData<NavigationCommand>()
-    val messageEvent = MutableLiveData<MessageEvent<*>>()
-    val event = MutableLiveData<Event<*>>()
+    val messageEvent = SingleLiveData<MessageEvent<*>>()
+    val event = SingleLiveData<Event<*>>()
     val startActivity = SingleLiveData<StartActivityModel>()
 
     /***************************************

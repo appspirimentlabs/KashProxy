@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.appspiriment.kashproxy.R
 import com.appspiriment.kashproxy.BR
+import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
 import com.appspiriment.kashproxy.ui.adapter.BaseListAdapter
 import com.appspiriment.kashproxy.databinding.FragmentResponseMapListBinding
 import com.appspiriment.kashproxy.databinding.LayoutProxyMappingListItemBinding
@@ -56,7 +57,9 @@ class ResponseMapListFragment : Fragment() {
             setDisplayHomeAsUpEnabled(false)
         }
 
-
+        context?.isKashProxyMappingEnabled().let{
+            viewModel.mappingEnabled.value = true
+        }
         observeData(viewModel.mappingEnabled){
             context?.saveKashProxyMappingEnabled(it)
         }

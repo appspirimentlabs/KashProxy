@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.appspiriment.kashproxy.ui.responseeditor.ResponseEditingViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/kashproxy_bg_curvrect_16_top_corner_clr_primary_bg"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/kash_padding_standard_xxxlarge">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/kash_padding_standard_xxlarge"
+            android:paddingTop="@dimen/kash_padding_standard_small"
+            android:paddingEnd="@dimen/kash_padding_standard_xxlarge"
+            app:layout_constraintTop_toBottomOf="@+id/ibtn_close">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/kash_response_code_map_title"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="22sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_from_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_large"
+                android:gravity="center"
+                android:text="@string/kash_convert_status_from"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <com.appspiriment.kashproxy.utils.customview.KashProxyEditText
+                android:id="@+id/tvHttpCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_small"
+                android:background="@drawable/kashproxy_bg_curvrect_4_strk_transparent_clr_ffffff"
+                android:hint="@string/kash_status_code"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxHeight="160dp"
+                android:minHeight="48dp"
+                android:text="@{viewModel.httpCode}"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.httpCodeChanged(text)}"
+                android:paddingStart="16dp"
+                android:paddingTop="@dimen/kash_padding_standard_xsmall"
+                android:paddingEnd="16dp"
+                android:paddingBottom="@dimen/kash_padding_standard_xsmall"
+                android:singleLine="true"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="14sp"
+                app:errorRes="@{viewModel.httpCodeError}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_from_title">
+
+                <requestFocus />
+            </com.appspiriment.kashproxy.utils.customview.KashProxyEditText>
+
+            <TextView
+                android:id="@+id/tv_from_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/kash_please_select_a_value"
+                android:textColor="@color/kash_text_error"
+                android:textSize="14sp"
+                app:isVisible="@{viewModel.httpCodeError != null}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHttpCode" />
+
+            <TextView
+                android:id="@+id/tv_response_type_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_large"
+                android:gravity="center"
+                android:text="@string/kash_response_type"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_from_error" />
+
+            <RadioGroup
+                android:id="@+id/rdg_mapping_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_small"
+                android:checkedButton="@={viewModel.selectedResponseType}"
+                android:onCheckedChanged="@{(view, selectedId) -> viewModel.onResponseTypeChanged(selectedId)}"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/tv_response_type_title">
+
+                <RadioButton
+                    android:id="@+id/rd_success_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/kashproxy_ic_check_mark_circled"
+                    android:buttonTint="@color/kash_primary_button_color"
+                    android:paddingStart="@dimen/kash_padding_standard_small"
+                    android:text="@string/kash_success_response" />
+
+                <RadioButton
+                    android:id="@+id/rd_error_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/kashproxy_ic_check_mark_circled"
+                    android:buttonTint="@color/kash_primary_button_color"
+                    android:layout_marginStart="@dimen/kash_padding_standard_medium"
+                    android:paddingStart="@dimen/kash_padding_standard_small"
+                    android:text="@string/kash_error_response" />
+
+            </RadioGroup>
+
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_response"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierAllowsGoneWidgets="true"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="layout_error_response_container,layout_success_response_container" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_success_response_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isVisible="@{viewModel.isSuccessResponse}"
+                app:layout_constraintTop_toBottomOf="@+id/rdg_mapping_type">
+
+                <TextView
+                    android:id="@+id/tv_success_response_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/kash_padding_standard_large"
+                    android:gravity="center"
+                    android:text="@string/kash_success_response"
+                    android:textColor="@color/kash_primary_text_color"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.appspiriment.kashproxy.utils.customview.KashProxyEditText
+                    android:id="@+id/txt_success_response"
+                    android:layout_width="@dimen/kash_padding_standard_none"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/kash_padding_standard_medium"
+                    android:background="@drawable/kashproxy_bg_curvrect_4_strk_transparent_clr_ffffff"
+                    android:gravity="top"
+                    android:hint="@string/kash_response_body"
+                    android:minHeight="208dp"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onSuccessResponseChanged(text)}"
+                    android:padding="@dimen/kash_padding_standard_medium"
+                    android:scrollbars="vertical"
+                    android:text="@{viewModel.responseSuccessBody}"
+                    android:textColor="@color/kash_primary_text_color"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_success_response_title" >
+                    <requestFocus/>
+                </com.appspiriment.kashproxy.utils.customview.KashProxyEditText>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_error_response_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isVisible="@{!viewModel.isSuccessResponse}"
+                app:layout_constraintTop_toBottomOf="@+id/layout_success_response_container">
+
+                <TextView
+                    android:id="@+id/tv_error_response_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/kash_padding_standard_large"
+                    android:gravity="center"
+                    android:text="@string/kash_error_response"
+                    android:textColor="@color/kash_primary_text_color"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.appspiriment.kashproxy.utils.customview.KashProxyEditText
+                    android:id="@+id/txt_error_response"
+                    android:layout_width="@dimen/kash_padding_standard_none"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/kash_padding_standard_medium"
+                    android:background="@drawable/kashproxy_bg_curvrect_4_strk_transparent_clr_ffffff"
+                    android:gravity="top"
+                    android:hint="@string/kash_response_body"
+                    android:minHeight="208dp"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onErrorResponseChanged(text)}"
+                    android:padding="@dimen/kash_padding_standard_medium"
+                    android:scrollbars="vertical"
+                    android:text="@{viewModel.responseErrorBody}"
+                    android:textColor="@color/kash_primary_text_color"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_error_response_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/btn_save"
+                style="@style/KashButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/kash_padding_standard_xxxlarge"
+                android:layout_marginBottom="@dimen/kash_padding_standard_xlarge"
+                android:onClick="@{()->viewModel.saveMappingItem()}"
+                android:text="@string/kash_save_response"
+                app:layout_constraintTop_toBottomOf="@+id/barrier_response" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -15,7 +15,7 @@ class ResponseMapListViewModel(application: Application): BaseAndroidViewModel(a
 
     val openMappingDetails = SingleLiveData<String?>()
     val mappingList = MutableLiveData<List<ResponseMappingModel>>(emptyList())
-    val mappingEnabled = MutableLiveData(false)
+    val mappingEnabled = MutableLiveData<Boolean>()
 
     init{
         mappingEnabled.value = application.isKashProxyMappingEnabled()
@@ -32,8 +32,8 @@ class ResponseMapListViewModel(application: Application): BaseAndroidViewModel(a
     }
 
 
-    fun openMappingDetails(id:String){
-        openMappingDetails.value = id
+    fun openMappingDetails(url:String){
+        openMappingDetails.value = url
     }
 
 }

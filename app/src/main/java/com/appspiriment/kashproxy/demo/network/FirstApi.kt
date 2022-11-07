@@ -19,7 +19,7 @@ interface FirstApi {
     @GET("http://digithreads.com/api1/path1/path1-13.json")
     suspend fun digithreads(): String
 
-    @GET("/api1/path1/path2-1.json")
+    @GET("/api1/path1/path1-1.json")
     suspend fun path1(): String
 
     @GET("/api1/path2/path2-1.json")

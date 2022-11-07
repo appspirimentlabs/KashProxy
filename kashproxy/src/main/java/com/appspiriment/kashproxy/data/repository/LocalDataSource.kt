@@ -8,11 +8,11 @@ interface LocalDataSource {
 
     suspend fun insertProxyMapping(mapping: ResponseMappingModel)
 
-    suspend fun deleteProxyMapping(id: Int)
+    suspend fun deleteProxyMapping(url: String)
 
     suspend fun getAllMapping(): List<ResponseMappingModel>
 
-    suspend fun getMappingById(id: Int): ResponseMappingModel
+    suspend fun getMappingByUrl(url: String): ResponseMappingModel?
 
     suspend fun getMappingByHost(
         protocol: String,

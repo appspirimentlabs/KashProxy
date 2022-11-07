@@ -8,22 +8,24 @@ import com.appspiriment.kashproxy.demo.di.KashProxyDemoApp
 import com.appspiriment.kashproxy.demo.network.ApiResult
 import com.appspiriment.kashproxy.di.KashProxyApp
 import com.appspiriment.kashproxy.utils.baseclasses.BaseAndroidViewModel
-import com.appspiriment.kashproxy.utils.events.SingleLiveData
+import com.chuckerteam.chucker.api.Chucker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DemoViewModel(application: Application) : BaseAndroidViewModel(application) {
-    val mappingEnabled = MutableLiveData(false)
+    val mappingEnabled = MutableLiveData<Boolean>()
     val host = MutableLiveData("")
     val path = MutableLiveData("")
     val apiResult = MutableLiveData<ApiResult>(ApiResult())
     val isLoading = MutableLiveData(false)
     val copyUrl = MutableLiveData("")
 
-    val showMapping = SingleLiveData<Unit>()
+    init{
+        mappingEnabled.value = application.isKashProxyMappingEnabled()
+    }
 
-    init {
-        mappingEnabled.value = application.applicationContext?.isKashProxyMappingEnabled()
+    fun checkMappingEnabled() {
+        mappingEnabled.value = getApplication<Application>().applicationContext?.isKashProxyMappingEnabled()
     }
 
     fun copyUrl(){
@@ -32,6 +34,10 @@ class DemoViewModel(application: Application) : BaseAndroidViewModel(application
 
     fun showMappings() {
         KashProxyApp.showMappingActivity(getApplication<Application>().applicationContext)
+    }
+
+    fun showLogs() {
+        getApplication<Application>().startActivity(Chucker.getLaunchIntent(getApplication<Application>().applicationContext))
     }
 
     fun fetchApiResult() {

@@ -24,7 +24,7 @@
             app:popUpTo="@id/kashMapListFragment"
             app:popUpToInclusive="false" >
             <argument
-                android:name="mappingId"
+                android:name="mappingUrl"
                 app:argType="string"/>
         </action>
 
@@ -32,20 +32,51 @@
 
     <fragment
         android:id="@+id/kashResponseMappingFragment"
-        android:name="com.appspiriment.kashproxy.ui.mappingdetail.ResponseMappingFragment"
+        android:name="com.appspiriment.kashproxy.ui.mappingdetail.MappingDetailsFragment"
         android:label="Mapping Detail">
         <action
-            android:id="@+id/showCodeRewriteSheet"
-            app:destination="@id/kashResponseCodeRewriteSheet"
+            android:id="@+id/showResponseEditor"
+            app:destination="@id/kashMappingResponseEditFragment"
             app:popEnterAnim="@anim/nav_default_enter_anim"
             app:popExitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/kashResponseMappingFragment"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="false" >
+
+            <argument
+                android:name="mappingItem"
+                app:argType="com.appspiriment.kashproxy.ui.model.MappingItem"/>
+        </action>
+        <action
+            android:id="@+id/showMappingsList"
+            app:destination="@id/kashMapListFragment"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_graph_main"
+            app:popUpToInclusive="true"/>
         <argument
-            android:name="mappingId"
+            android:name="mappingUrl"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="null"/>
+         <argument
+            android:name="map_model"
+            app:argType="com.appspiriment.kashproxy.ui.model.MapUrlModel"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/kashMappingResponseEditFragment"
+        android:name="com.appspiriment.kashproxy.ui.responseeditor.ResponseEditingFragment"
+        android:label="Mapping Detail Editor">
+
+        <argument
+            android:name="mappingItem"
+            app:argType="com.appspiriment.kashproxy.ui.model.MappingItem"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
     </fragment>
 
     <dialog

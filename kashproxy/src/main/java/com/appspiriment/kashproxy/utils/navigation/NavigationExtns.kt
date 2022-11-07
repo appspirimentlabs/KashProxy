@@ -13,12 +13,12 @@ fun Fragment.handleNavigation(navigationCommand: NavigationCommand) {
             when (navigationCommand) {
                 is NavigationCommand.To -> navigate(navigationCommand.directions)
                 is NavigationCommand.DeepLink -> navigate(navigationCommand.uri)
+                NavigationCommand.Back,
                 is NavigationCommand.POP -> {
                     if (!navigateUp()) {
                         requireActivity().finish()
                     } else { /*Nothing to do */ }
                 }
-                is NavigationCommand.Back -> navigateUp()
                 is NavigationCommand.FinishActivity -> activity?.finish()
             }
         }

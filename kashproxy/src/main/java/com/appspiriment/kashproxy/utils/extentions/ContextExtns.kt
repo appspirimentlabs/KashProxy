@@ -10,6 +10,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.appspiriment.kashproxy.utils.events.SingleLiveData
 import com.appspiriment.kashproxy.utils.navigation.StartActivityModel
 
 
@@ -43,6 +44,15 @@ fun Activity.handleStartActivity(activityModel: StartActivityModel) {
  * Setting Observers
  ***************************************/
 fun <T> Fragment.observeData(liveData: LiveData<T>, observer: (value: T) -> Unit) {
+    liveData.observe(viewLifecycleOwner) { value ->
+        observer(value)
+    }
+}
+
+/***************************************
+ * Setting Observers
+ ***************************************/
+fun <T> Fragment.observeData(liveData: SingleLiveData<T>, observer: (value: T) -> Unit) {
     liveData.observe(viewLifecycleOwner) { value ->
         observer(value)
     }

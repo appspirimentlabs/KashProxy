@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/kash_padding_standard_medium"
-            android:onClick="@{()->viewModel.openMappingDetails(model.mappingId)}">
+            android:onClick="@{()->viewModel.openMappingDetails(model.url)}">
 
             <TextView
                 android:id="@+id/tv_protocol"
@@ -97,7 +97,6 @@
                 android:layout_marginTop="@dimen/kash_padding_standard_small"
                 android:text="@string/kash_rewriting_status"
                 android:textSize="13sp"
-                app:isVisible="@{model.responseStatusRewrite}"
                 android:textColor="@color/kash_chip_rewite_status"
                 app:layout_constraintTop_toBottomOf="@+id/tv_queries"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +106,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/kash_mapping_response"
-                app:isVisible="@{model.responseMapping}"
                 android:textColor="@color/kash_chip_response_map"
                 android:textSize="13sp"
                 android:layout_marginTop="@dimen/kash_padding_standard_small"

@@ -13,7 +13,7 @@ open class NavigationActivity : AppCompatActivity() {
         ) as NavHostFragment
     }
 
-    private val navController by lazy {
+    protected val navController by lazy {
         navHostFragment.navController
     }
 

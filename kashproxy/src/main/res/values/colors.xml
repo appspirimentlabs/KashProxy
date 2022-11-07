@@ -18,8 +18,11 @@
     <color name="kash_text_error">#E91E1E</color>
     <color name="kash_chip_rewite_status">#F44336</color>
     <color name="kash_chip_response_map">#009637</color>
+    <color name="kash_success_color">#018130</color>
+    <color name="kash_error_color">#F65347</color>
     <color name="kash_primary_button_color">#2196F3</color>
     <color name="kash_primary_button_text_color">#ffffff</color>
     <color name="kash_action_item_grey">#808191</color>
+    <color name="kash_action_item_grey_dark">#646465</color>
     <color name="kash_translucent_disabled">#66808191</color>
 </resources>

@@ -16,7 +16,7 @@ import com.appspiriment.kashproxy.data.db.ResponseMappingDao
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-@Database(entities = [ResponseMappingEntity::class],     version = 2)
+@Database(entities = [ResponseMappingEntity::class],     version = 1)
 abstract class KashProxyDatabase internal constructor () : RoomDatabase() {
     abstract fun mappingDao() : ResponseMappingDao
 }

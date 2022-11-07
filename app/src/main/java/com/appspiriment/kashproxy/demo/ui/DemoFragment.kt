@@ -30,6 +30,10 @@ class DemoFragment : Fragment() {
     }.root
 
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.checkMappingEnabled()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

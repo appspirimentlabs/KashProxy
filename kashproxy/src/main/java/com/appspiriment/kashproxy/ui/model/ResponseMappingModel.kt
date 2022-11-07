@@ -16,16 +16,17 @@ import java.net.URL
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
 data class ResponseMappingModel(
-    val mappingId: String?,
     val url: String,
     val protocol: String,
     val apiHost: String,
     val path: String?,
     val queries: String?,
-    val isResponseStatusRewrite: Boolean,
-    val isResponseMapping: Boolean,
-    val responseStatusMap: HashMap<Int, Pair<Int, Boolean>>,
-    val responseBody: String?
+    val mapToSuccess: Boolean,
+    val mappingNickName: String?,
+    val httpCode: Int,
+    val successResponse: String?,
+    val errorResponse: String?,
+    val mappingEnabled: Boolean
 ){
     fun toJson() = Gson().toJson(this)
 

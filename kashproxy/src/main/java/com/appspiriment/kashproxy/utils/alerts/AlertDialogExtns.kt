@@ -47,7 +47,7 @@ fun Activity.showAlertDialog(alertDialog: AlertDialogModel) {
  * Method actionTo show an Alert Dialog with onClick Listeners
  * ****************************************
  */
-fun Activity.showAlertDialog(
+fun Activity.showMsgDialog(
     title: Any,
     message: Any,
     view: Any? = null,
@@ -57,7 +57,7 @@ fun Activity.showAlertDialog(
     finishActivityOnOk: Boolean = false,
     finishActivityAffinity: Boolean = false,
     finishActivityOnCancel: Boolean = false,
-    isCancellable: Boolean = false,
+    isCancellable: Boolean = true,
     positiveClickListen: () -> Unit = {},
     negativeClickListen: () -> Unit = {},
     neutralClickListen: () -> Unit = {},
@@ -104,7 +104,7 @@ private fun getAlertDialogBuilder(
     finishActivityOnOk: Boolean = false,
     finishActivityAffinity: Boolean = false,
     finishActivityOnCancel: Boolean = false,
-    isCancellable: Boolean = false,
+    isCancellable: Boolean = true,
     positiveClickListen: () -> Unit = {},
     negativeClickListen: () -> Unit = {},
     neutralClickListen: () -> Unit = {},

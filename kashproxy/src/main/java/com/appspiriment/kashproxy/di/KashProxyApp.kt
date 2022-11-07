@@ -7,6 +7,7 @@ import com.appspiriment.kashproxy.data.db.LocalRoomDataSource
 import com.appspiriment.kashproxy.data.repository.ResponseMappingRepository
 import com.appspiriment.kashproxy.network.KashProxyInterceptor
 import com.appspiriment.kashproxy.ui.main.KashProxyActivity
+import com.appspiriment.kashproxy.ui.model.MapUrlModel
 
 object KashProxyApp {
 
@@ -21,8 +22,8 @@ object KashProxyApp {
         }
     }
 
-    fun showMappingActivity(context: Context) {
-        KashProxyActivity.show(context)
+    fun showMappingActivity(context: Context, mapModel:MapUrlModel? = null) {
+        KashProxyActivity.show(context, mapModel)
     }
 
     fun getInterceptor(context: Context) = KashProxyInterceptor(context)

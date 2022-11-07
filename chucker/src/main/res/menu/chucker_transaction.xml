@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mapping"
+        android:icon="@drawable/chucker_ic_action_transofrm"
+        android:title="@string/chucker_map_url"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/chucker_ic_search_white"
+        android:title="@string/chucker_search"
+        android:visible="false"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
+    <item
+        android:icon="@drawable/chucker_ic_decoded_url_white"
+        android:title="@string/chucker_encode_url"
+        android:id="@+id/encode_url"
+        android:visible="false"
+        app:showAsAction="ifRoom">
+    </item>
+    <item
+        android:icon="@drawable/chucker_ic_share_white"
+        android:title="@string/chucker_share"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/share_text"
+                    android:title="@string/chucker_share_as_text" />
+                <item
+                    android:id="@+id/share_curl"
+                    android:title="@string/chucker_share_as_curl" />
+                <item
+                    android:id="@+id/share_file"
+                    android:title="@string/chucker_share_as_file" />
+                <item
+                    android:id="@+id/share_har"
+                    android:title="@string/chucker_share_as_har" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:icon="@drawable/chucker_ic_save_white"
+        android:title="@string/chucker_save"
+        android:id="@+id/save_body"
+        android:visible="false"
+        app:showAsAction="ifRoom">
+    </item>
+</menu>

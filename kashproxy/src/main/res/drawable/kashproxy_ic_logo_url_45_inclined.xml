@@ -5,7 +5,7 @@
             android:pivotX="50%"
             android:pivotY="50%"
             android:toDegrees="0"
-            android:drawable="@drawable/ic_logo_url">
+            android:drawable="@drawable/kashproxy_ic_logo_url">
            </rotate>
     </item>
 </layer-list>
