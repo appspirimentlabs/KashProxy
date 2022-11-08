@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.appspiriment.kashproxy.R
-import com.appspiriment.kashproxy.di.KashProxyApp
+import com.appspiriment.kashproxy.di.KashProxy
 import com.appspiriment.kashproxy.ui.model.MapUrlModel
 import com.appspiriment.kashproxy.ui.model.MappingItem
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
@@ -65,7 +65,7 @@ class MappingDetailsViewModel(
             formatUrl()
         } else {
             viewModelScope.launch {
-                KashProxyApp.getMappingRepository().getMappingByUrl(url)?.let {
+                KashProxy.getMappingRepository().getMappingByUrl(url)?.let {
                     apiUrl.value = it.url
                     protocol.value = it.protocol
                     apiHost.value = it.apiHost
@@ -146,7 +146,7 @@ class MappingDetailsViewModel(
                 negativeButtonTxt = R.string.kash_cancel,
                 positiveClickListen = {
                     viewModelScope.launch {
-                        KashProxyApp.getMappingRepository().deleteProxyMapping(it)
+                        KashProxy.getMappingRepository().deleteProxyMapping(it)
                         navigateBack()
                     }
                 }
@@ -204,7 +204,7 @@ class MappingDetailsViewModel(
                     errorResponse = errorResponse.value,
                     mappingEnabled = mappingEnabled.value == true
                 ).let {
-                    KashProxyApp.getMappingRepository().insertProxyMapping(it)
+                    KashProxy.getMappingRepository().insertProxyMapping(it)
                     isSaving = false
                     navigate(MappingDetailsFragmentDirections.showMappingsList())
                 }

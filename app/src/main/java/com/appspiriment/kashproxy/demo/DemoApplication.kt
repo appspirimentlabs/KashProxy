@@ -2,7 +2,7 @@ package com.appspiriment.kashproxy.demo
 
 import android.app.Application
 import com.appspiriment.kashproxy.demo.di.KashProxyDemoApp
-import com.appspiriment.kashproxy.di.KashProxyApp
+import com.appspiriment.kashproxy.di.KashProxy
 
 class DemoApplication: Application() {
 
@@ -10,7 +10,7 @@ class DemoApplication: Application() {
         super.onCreate()
 
         KashProxyDemoApp.initialize(applicationContext)
-        KashProxyApp.initialize(applicationContext)
+        KashProxy.initialize(applicationContext)
 
     }
 }

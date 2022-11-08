@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
 import com.appspiriment.kashproxy.demo.di.KashProxyDemoApp
 import com.appspiriment.kashproxy.demo.network.ApiResult
-import com.appspiriment.kashproxy.di.KashProxyApp
+import com.appspiriment.kashproxy.di.KashProxy
 import com.appspiriment.kashproxy.utils.baseclasses.BaseAndroidViewModel
 import com.chuckerteam.chucker.api.Chucker
 import kotlinx.coroutines.delay
@@ -33,7 +33,7 @@ class DemoViewModel(application: Application) : BaseAndroidViewModel(application
     }
 
     fun showMappings() {
-        KashProxyApp.showMappingActivity(getApplication<Application>().applicationContext)
+        KashProxy.showMappingActivity(getApplication<Application>().applicationContext)
     }
 
     fun showLogs() {

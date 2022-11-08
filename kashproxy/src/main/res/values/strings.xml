@@ -1,4 +1,8 @@
 <resources>
+    <string name="kash_proxy_name">KashProxy</string>
+    <string name="kash_proxy_notification">KashProxy Mapping Enabled!</string>
+    <string name="kash_proxy_map_notification">Mapping API Responses</string>
+    <string name="kash_proxy_notification_desc">KashProxy Mapping Requests</string>
     <string name="kash_protocol">Protocol: </string>
     <string name="kash_delete">Delete</string>
     <string name="kash_edit">Edit</string>

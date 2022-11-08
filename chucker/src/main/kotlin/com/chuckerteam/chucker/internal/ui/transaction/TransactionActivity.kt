@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
-import com.appspiriment.kashproxy.di.KashProxyApp
+import com.appspiriment.kashproxy.di.KashProxy
 import com.chuckerteam.chucker.R
 import com.chuckerteam.chucker.databinding.ChuckerActivityTransactionBinding
 import com.chuckerteam.chucker.internal.data.entity.HttpTransaction
@@ -167,7 +167,7 @@ internal class TransactionActivity : BaseChuckerActivity() {
     private fun startMapping(): Boolean
     {
        viewModel.getTransactionMapModel().let{
-                KashProxyApp.showMappingActivity(this, it)
+                KashProxy.showMappingActivity(this, it)
         }
 
         return true

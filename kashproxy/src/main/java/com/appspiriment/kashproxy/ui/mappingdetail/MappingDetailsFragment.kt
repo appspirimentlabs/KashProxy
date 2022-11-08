@@ -7,13 +7,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.appspiriment.kashproxy.R
-import com.appspiriment.kashproxy.data.preference.deletePref
 import com.appspiriment.kashproxy.databinding.FragmentResponseMappingBinding
-import com.appspiriment.kashproxy.di.KashProxyApp
 import com.appspiriment.kashproxy.ui.model.MappingItem
 import com.appspiriment.kashproxy.ui.responseeditor.ResponseEditingViewModel
 import com.appspiriment.kashproxy.utils.alerts.showMessageEvent
@@ -21,8 +16,6 @@ import com.appspiriment.kashproxy.utils.extentions.observeData
 import com.appspiriment.kashproxy.utils.extentions.openFragmentForResult
 import com.appspiriment.kashproxy.utils.navigation.handleNavigation
 import com.appspiriment.kashproxy.ui.di.createWithFactory
-import com.appspiriment.kashproxy.utils.alerts.showAlertDialog
-import kotlinx.coroutines.launch
 
 
 class MappingDetailsFragment : Fragment() {

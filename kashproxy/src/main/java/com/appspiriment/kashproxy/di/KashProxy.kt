@@ -1,7 +1,6 @@
 package com.appspiriment.kashproxy.di
 
 import android.content.Context
-import android.content.Intent
 import com.appspiriment.kashproxy.data.db.DatabaseObjects
 import com.appspiriment.kashproxy.data.db.LocalRoomDataSource
 import com.appspiriment.kashproxy.data.repository.ResponseMappingRepository
@@ -9,7 +8,7 @@ import com.appspiriment.kashproxy.network.KashProxyInterceptor
 import com.appspiriment.kashproxy.ui.main.KashProxyActivity
 import com.appspiriment.kashproxy.ui.model.MapUrlModel
 
-object KashProxyApp {
+object KashProxy {
 
     private var databaseObjects: DatabaseObjects? = null
     private var mappingRepository: ResponseMappingRepository? = null

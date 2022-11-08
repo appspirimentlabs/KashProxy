@@ -3,7 +3,6 @@ package com.appspiriment.kashproxy.demo.network
 import android.content.Context
 import com.appspiriment.kashproxy.demo.BuildConfig
 import com.appspiriment.kashproxy.demo.di.KashProxyDemoApp
-import com.appspiriment.kashproxy.di.KashProxyApp
 import com.chuckerteam.chucker.api.Chucker
 import com.google.gson.GsonBuilder
 import okhttp3.Cache

@@ -3,6 +3,7 @@ package com.appspiriment.kashproxy.data.preference
 import android.content.Context
 import android.content.SharedPreferences
 import com.appspiriment.kashproxy.R
+import com.appspiriment.kashproxy.utils.NotificationUtils
 
 const val KEY_MAPPING_ENABLED = "kashProxyMappingEnabled"
 
@@ -84,6 +85,7 @@ fun Context.getFloatPrefs(prefName: String, defValue: Float): Float {
 
 fun Context.saveKashProxyMappingEnabled(enabled: Boolean){
     saveBoolPrefs(KEY_MAPPING_ENABLED, enabled)
+    NotificationUtils(this).displayKashProxyNotification( enabled)
 }
 
 fun Context.isKashProxyMappingEnabled() = getBoolPrefs(KEY_MAPPING_ENABLED, false)
