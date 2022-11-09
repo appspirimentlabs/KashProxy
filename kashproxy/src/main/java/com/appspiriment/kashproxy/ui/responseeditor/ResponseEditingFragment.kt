@@ -16,7 +16,7 @@ import com.appspiriment.kashproxy.utils.customview.KashProxyEditText
 import com.appspiriment.kashproxy.utils.extentions.observeData
 
 
-class ResponseEditingFragment : Fragment() {
+internal class ResponseEditingFragment : Fragment() {
 
     private val viewModel: ResponseEditingViewModel by viewModels()
     private val args by navArgs<ResponseEditingFragmentArgs>()

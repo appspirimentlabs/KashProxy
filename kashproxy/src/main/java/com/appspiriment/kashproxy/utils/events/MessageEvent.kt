@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-class MessageEvent<T>(
+internal class MessageEvent<T>(
     val message: T,
     val duration: Int,
     override val eventType: EventType = EventType.SHOW_TOAST

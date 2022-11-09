@@ -8,7 +8,7 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import android.util.Log
 import androidx.core.content.getSystemService
-import com.appspiriment.kashproxy.di.KashProxy
+import com.appspiriment.kashproxy.di.KashProxyLib
 import com.chuckerteam.chucker.R
 import com.chuckerteam.chucker.internal.support.Logger
 import com.chuckerteam.chucker.internal.support.NotificationHelper
@@ -93,18 +93,6 @@ public object Chucker {
         }
     }
 
-    public fun getInterceptors(
-        context: Context,
-        showNotification: Boolean = true,
-        retentionPeriod: RetentionManager.Period = RetentionManager.Period.ONE_HOUR,
-        bodyDecoders: List<BodyDecoder> = emptyList()
-    ): List<Interceptor> {
-        return listOf(
-            getChuckerInterceptor(context, showNotification, retentionPeriod, bodyDecoders),
-            KashProxy.getInterceptor(context)
-        )
-    }
-
     public fun getChuckerInterceptor(
         context: Context,
         showNotification: Boolean = true,
@@ -122,7 +110,7 @@ public object Chucker {
 
             )
 
-        KashProxy.initialize(context)
+        KashProxyLib.initialize(context)
 
         // Create the Interceptor
         return ChuckerInterceptor.Builder(context).apply {

@@ -3,12 +3,14 @@ package com.appspiriment.kashproxy.di
 import android.content.Context
 import com.appspiriment.kashproxy.data.db.DatabaseObjects
 import com.appspiriment.kashproxy.data.db.LocalRoomDataSource
+import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
+import com.appspiriment.kashproxy.data.preference.saveKashProxyMappingEnabled
 import com.appspiriment.kashproxy.data.repository.ResponseMappingRepository
 import com.appspiriment.kashproxy.network.KashProxyInterceptor
 import com.appspiriment.kashproxy.ui.main.KashProxyActivity
 import com.appspiriment.kashproxy.ui.model.MapUrlModel
 
-object KashProxy {
+object KashProxyLib {
 
     private var databaseObjects: DatabaseObjects? = null
     private var mappingRepository: ResponseMappingRepository? = null
@@ -21,11 +23,17 @@ object KashProxy {
         }
     }
 
-    fun showMappingActivity(context: Context, mapModel:MapUrlModel? = null) {
+    fun showMappingActivity(context: Context, mapModel: MapUrlModel? = null) {
         KashProxyActivity.show(context, mapModel)
     }
 
-    fun getInterceptor(context: Context) = KashProxyInterceptor(context)
+    fun getKashProxyInterceptor(context: Context): KashProxyInterceptor {
+        initialize(context)
+        return KashProxyInterceptor(context)
+    }
+
+    fun enableKashProxyMapping(context: Context, enabled: Boolean) = context.saveKashProxyMappingEnabled(enabled)
+    fun isKashProxyMapping(context: Context) = context.isKashProxyMappingEnabled()
 
     internal fun getDatabaseObjects(): DatabaseObjects {
         return databaseObjects ?: run {

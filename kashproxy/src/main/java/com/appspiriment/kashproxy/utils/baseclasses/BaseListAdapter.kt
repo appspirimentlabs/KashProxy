@@ -20,7 +20,7 @@ import java.util.concurrent.Executors
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-open class BaseListAdapter<ListItemType : Any, ViewBindingType : ViewDataBinding>(
+internal open class BaseListAdapter<ListItemType : Any, ViewBindingType : ViewDataBinding>(
     private val itemLayoutId : Int,
     private val bindingItemId : Int,
     private val positionBindingId : Int? = null,

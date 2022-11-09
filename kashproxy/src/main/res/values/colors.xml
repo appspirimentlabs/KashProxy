@@ -4,7 +4,7 @@
     <color name="kash_primary_color_dark">#1767A6</color>
     <color name="kash_primary_accent_color">#FFC107</color>
 
-    <color name="kash_primary_text_color">#000000</color>
+    <color name="kash_primary_text_color">#01051B</color>
     <color name="kash_primary_text_dim_color">#808191</color>
     <color name="kash_primary_text_light_color">#ffffff</color>
     <color name="kash_primary_background">#F6F6F6</color>

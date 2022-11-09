@@ -5,7 +5,7 @@ import com.appspiriment.kashproxy.utils.baseclasses.BaseViewModel
 import com.appspiriment.kashproxy.R
 import com.appspiriment.kashproxy.utils.events.SingleLiveData
 
-class ResponseStatusRewriteViewModel: BaseViewModel() {
+internal class ResponseStatusRewriteViewModel: BaseViewModel() {
 
     val fromCode = MutableLiveData<String>()
     val fromCodeError = MutableLiveData<Int?>()

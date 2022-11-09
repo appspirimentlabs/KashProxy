@@ -3,7 +3,7 @@ package com.appspiriment.kashproxy.utils.events
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.
  */
-open class Event<out T>(private val content: T, open val eventType: EventType) {
+internal open class Event<out T>(private val content: T, open val eventType: EventType) {
 
     enum class EventType {
         SHOW_SNACKBAR,

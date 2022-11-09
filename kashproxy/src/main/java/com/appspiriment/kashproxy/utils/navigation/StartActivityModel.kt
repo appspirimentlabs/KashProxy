@@ -14,7 +14,7 @@ import android.os.Bundle
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-class StartActivityModel(
+internal class StartActivityModel(
         val activityClass: Class<out Activity>? = null,
         val action: String? = null,
         val extras: Bundle = Bundle(),

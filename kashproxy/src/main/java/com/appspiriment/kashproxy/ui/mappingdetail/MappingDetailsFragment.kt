@@ -18,7 +18,7 @@ import com.appspiriment.kashproxy.utils.navigation.handleNavigation
 import com.appspiriment.kashproxy.ui.di.createWithFactory
 
 
-class MappingDetailsFragment : Fragment() {
+internal class MappingDetailsFragment : Fragment() {
 
     private val args by navArgs<MappingDetailsFragmentArgs>()
 

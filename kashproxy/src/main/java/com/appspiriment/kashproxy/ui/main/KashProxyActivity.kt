@@ -3,7 +3,7 @@ package com.appspiriment.kashproxy.ui.main
 import android.content.Context
 import android.content.Intent
 import com.appspiriment.kashproxy.R
-import com.appspiriment.kashproxy.di.KashProxy
+import com.appspiriment.kashproxy.di.KashProxyLib
 import com.appspiriment.kashproxy.ui.model.MapUrlModel
 import com.appspiriment.kashproxy.utils.baseclasses.NavigationActivity
 
@@ -25,6 +25,7 @@ internal class KashProxyActivity : NavigationActivity() {
     }
 
     companion object {
+        const val EXTRA_NAME_MAP_URL = "mappingUrl"
         const val EXTRA_NAME_MAP_MODEL = "map_model"
         fun show(context: Context, mapModel: MapUrlModel? = null) {
             getLauncherIntent(context, mapModel).let {
@@ -33,11 +34,12 @@ internal class KashProxyActivity : NavigationActivity() {
         }
 
         fun getLauncherIntent(context: Context, mapModel: MapUrlModel? = null): Intent {
-            KashProxy.initialize(context)
+            KashProxyLib.initialize(context)
             return Intent(context, KashProxyActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 mapModel?.let{
-                    putExtra(EXTRA_NAME_MAP_MODEL, mapModel)
+                    putExtra(EXTRA_NAME_MAP_URL, it.url)
+                    putExtra(EXTRA_NAME_MAP_MODEL, it)
                 }
             }
         }

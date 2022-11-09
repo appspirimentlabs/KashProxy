@@ -9,11 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.appspiriment.kashproxy.data.preference.saveKashProxyMappingEnabled
-import com.appspiriment.kashproxy.demo.R
+import com.appspiriment.kashproxy.api.KashProxy
 import com.appspiriment.kashproxy.demo.databinding.FragmentDemoBinding
-import com.appspiriment.kashproxy.utils.alerts.showToast
-import com.appspiriment.kashproxy.utils.extentions.observeData
 
 
 class DemoFragment : Fragment() {
@@ -34,17 +31,23 @@ class DemoFragment : Fragment() {
         super.onResume()
         viewModel.checkMappingEnabled()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observeData(viewModel.mappingEnabled) { context?.saveKashProxyMappingEnabled(it) }
+        viewModel.mappingEnabled.observe(viewLifecycleOwner) {
+            KashProxy.enableKashProxyMapping(
+                requireContext(),
+                (it)
+            )
+        }
 
-        observeData(viewModel.copyUrl){
-            if(it.isNotBlank()) {
-                val myClipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        viewModel.copyUrl.observe(viewLifecycleOwner) {
+            if (it.isNotBlank()) {
+                val myClipboard =
+                    context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 val clip = ClipData.newPlainText("Copied", it)
                 myClipboard.setPrimaryClip(clip)
-                showToast(R.string.url_copied)
             }
         }
     }

@@ -1,9 +1,9 @@
 package com.appspiriment.kashproxy.demo.network
 
 import android.content.Context
+import com.appspiriment.kashproxy.api.KashProxy
 import com.appspiriment.kashproxy.demo.BuildConfig
 import com.appspiriment.kashproxy.demo.di.KashProxyDemoApp
-import com.chuckerteam.chucker.api.Chucker
 import com.google.gson.GsonBuilder
 import okhttp3.Cache
 import okhttp3.ConnectionSpec
@@ -55,7 +55,7 @@ class NetworkModule(context: Context) {
         ).apply {
 
             connectTimeout(100, TimeUnit.SECONDS)
-            Chucker.getInterceptors(context).forEach{
+            KashProxy.getInterceptors(context).forEach{
                 addInterceptor(it)
             }
             readTimeout(100, TimeUnit.SECONDS).build()

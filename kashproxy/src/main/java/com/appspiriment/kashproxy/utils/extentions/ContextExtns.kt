@@ -29,7 +29,7 @@ import com.appspiriment.kashproxy.utils.navigation.StartActivityModel
 /***************************************
  * Setting Observers
  ***************************************/
-fun Activity.handleStartActivity(activityModel: StartActivityModel) {
+internal fun Activity.handleStartActivity(activityModel: StartActivityModel) {
     startActivity(Intent().apply {
         activityModel.activityClass?.let { setClass(this@handleStartActivity, it) }
         action = activityModel.action
@@ -43,7 +43,7 @@ fun Activity.handleStartActivity(activityModel: StartActivityModel) {
 /***************************************
  * Setting Observers
  ***************************************/
-fun <T> Fragment.observeData(liveData: LiveData<T>, observer: (value: T) -> Unit) {
+internal fun <T> Fragment.observeData(liveData: LiveData<T>, observer: (value: T) -> Unit) {
     liveData.observe(viewLifecycleOwner) { value ->
         observer(value)
     }
@@ -52,7 +52,7 @@ fun <T> Fragment.observeData(liveData: LiveData<T>, observer: (value: T) -> Unit
 /***************************************
  * Setting Observers
  ***************************************/
-fun <T> Fragment.observeData(liveData: SingleLiveData<T>, observer: (value: T) -> Unit) {
+internal fun <T> Fragment.observeData(liveData: SingleLiveData<T>, observer: (value: T) -> Unit) {
     liveData.observe(viewLifecycleOwner) { value ->
         observer(value)
     }
@@ -61,7 +61,7 @@ fun <T> Fragment.observeData(liveData: SingleLiveData<T>, observer: (value: T) -
 /***************************************
  * Setting Observers
  ***************************************/
-fun <T> AppCompatActivity.observeData(liveData: LiveData<T>, observer: (value: T) -> Unit) {
+internal fun <T> AppCompatActivity.observeData(liveData: LiveData<T>, observer: (value: T) -> Unit) {
     liveData.observe(this) { value ->
         observer(value)
     }
@@ -70,7 +70,7 @@ fun <T> AppCompatActivity.observeData(liveData: LiveData<T>, observer: (value: T
 /***************************************
  * Setting Observers
  ***************************************/
-fun Fragment.openFragmentForResult(
+internal fun Fragment.openFragmentForResult(
     direction: NavDirections,
     requestKey: String,
     listener: (bundle: Bundle) -> Unit

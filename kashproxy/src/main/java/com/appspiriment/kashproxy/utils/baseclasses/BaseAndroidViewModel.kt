@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
 
-open class BaseAndroidViewModel(application: Application) : AndroidViewModel(application) {
+internal abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel(application) {
 
     val navigation = SingleLiveData<NavigationCommand>()
     val messageEvent = SingleLiveData<MessageEvent<*>>()

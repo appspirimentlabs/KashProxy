@@ -2,7 +2,7 @@ package com.appspiriment.kashproxy.data.db
 
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
 
-fun ResponseMappingModel.toEntity() = ResponseMappingEntity(
+internal fun ResponseMappingModel.toEntity() = ResponseMappingEntity(
     apiUrl = url,
     protocol = protocol,
     apiHost = apiHost,
@@ -15,7 +15,7 @@ fun ResponseMappingModel.toEntity() = ResponseMappingEntity(
     errorResponse = errorResponse,
     mappingEnabled = mappingEnabled
 )
-fun ResponseMappingEntity.toModel() = ResponseMappingModel(
+internal fun ResponseMappingEntity.toModel() = ResponseMappingModel(
     url = apiUrl,
     protocol = protocol,
     apiHost = apiHost,

@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 /***************************************
  * Show Exit Confirmation
  ***************************************/
-fun <T> Fragment.showSnackbar(
+internal fun <T> Fragment.showSnackbar(
     message: T,
     duration: Int = Snackbar.LENGTH_SHORT
 ) {
@@ -27,7 +27,7 @@ fun <T> Fragment.showSnackbar(
 /***************************************
  * Show Exit Confirmation
  ***************************************/
-fun <M> Fragment.showToast(
+internal fun <M> Fragment.showToast(
     message: M,
     isLong: Boolean = false
 ) {
@@ -37,7 +37,7 @@ fun <M> Fragment.showToast(
 /***************************************
  * Show Exit Confirmation
  ***************************************/
-fun <M> Context.showToast(
+internal fun <M> Context.showToast(
     message: M,
     isLong: Boolean = false
 ) {
@@ -57,7 +57,7 @@ fun <M> Context.showToast(
 /***************************************
  * Show Exit Confirmation
  ***************************************/
-fun <T> Fragment.showMessageEvent(event: MessageEvent<T>?) {
+internal fun <T> Fragment.showMessageEvent(event: MessageEvent<T>?) {
     when (event?.eventType) {
         Event.EventType.SHOW_SNACKBAR -> showSnackbar(
             event.message,
@@ -71,7 +71,7 @@ fun <T> Fragment.showMessageEvent(event: MessageEvent<T>?) {
 /***************************************
  * Show Exit Confirmation
  ***************************************/
-fun <T> Activity.showMessageEvent(event: MessageEvent<T>?) {
+internal fun <T> Activity.showMessageEvent(event: MessageEvent<T>?) {
     when (event?.eventType) {
         Event.EventType.SHOW_TOAST -> showToast(
             event.message,

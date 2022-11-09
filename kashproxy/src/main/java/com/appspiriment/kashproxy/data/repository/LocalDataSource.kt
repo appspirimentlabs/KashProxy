@@ -4,7 +4,7 @@ import com.appspiriment.kashproxy.data.db.ResponseMappingEntity
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
 import okhttp3.Protocol
 
-interface LocalDataSource {
+internal interface LocalDataSource {
 
     suspend fun insertProxyMapping(mapping: ResponseMappingModel)
 

@@ -3,7 +3,7 @@ package com.appspiriment.kashproxy.data.db
 import com.appspiriment.kashproxy.data.repository.LocalDataSource
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
 
-class LocalRoomDataSource(private val dao: ResponseMappingDao) : LocalDataSource {
+internal class LocalRoomDataSource(private val dao: ResponseMappingDao) : LocalDataSource {
     override suspend fun insertProxyMapping(mapping: ResponseMappingModel) {
         dao.insertProxyMapping(mapping.toEntity())
     }

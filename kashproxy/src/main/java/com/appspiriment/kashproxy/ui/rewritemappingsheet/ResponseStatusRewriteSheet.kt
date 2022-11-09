@@ -11,7 +11,7 @@ import com.appspiriment.kashproxy.utils.extentions.observeData
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class ResponseStatusRewriteSheet : BottomSheetDialogFragment() {
+internal class ResponseStatusRewriteSheet : BottomSheetDialogFragment() {
 
     private val viewModel: ResponseStatusRewriteViewModel by viewModels()
 

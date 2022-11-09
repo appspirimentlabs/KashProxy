@@ -16,7 +16,7 @@ import android.view.View
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
 
-fun Activity.showAlertDialog(alertDialog: AlertDialogModel) {
+internal fun Activity.showAlertDialog(alertDialog: AlertDialogModel) {
     alertDialog.let {
         getAlertDialogBuilder(
             activity = this,
@@ -47,7 +47,7 @@ fun Activity.showAlertDialog(alertDialog: AlertDialogModel) {
  * Method actionTo show an Alert Dialog with onClick Listeners
  * ****************************************
  */
-fun Activity.showMsgDialog(
+internal fun Activity.showMsgDialog(
     title: Any,
     message: Any,
     view: Any? = null,

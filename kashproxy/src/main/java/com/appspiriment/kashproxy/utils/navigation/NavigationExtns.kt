@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 /***************************************
  * Setting Observers
  ***************************************/
-fun Fragment.handleNavigation(navigationCommand: NavigationCommand) {
+internal fun Fragment.handleNavigation(navigationCommand: NavigationCommand) {
     try {
         findNavController().run {
             when (navigationCommand) {

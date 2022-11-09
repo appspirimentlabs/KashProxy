@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.appspiriment.kashproxy.R
-import com.appspiriment.kashproxy.di.KashProxy
+import com.appspiriment.kashproxy.di.KashProxyLib
 import com.appspiriment.kashproxy.ui.model.MapUrlModel
 import com.appspiriment.kashproxy.ui.model.MappingItem
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
@@ -16,10 +16,8 @@ import com.appspiriment.kashproxy.utils.extentions.formatToJson
 import kotlinx.coroutines.launch
 import java.net.URI
 
-class MappingDetailsViewModel(
-    application: Application,
-    private val url: String?,
-    private val mapUrlModel: MapUrlModel?
+internal class MappingDetailsViewModel(
+    application: Application, private val url: String?, private val mapUrlModel: MapUrlModel?
 ) : BaseAndroidViewModel(application) {
 
     val apiUrlError = MutableLiveData<Int?>()
@@ -56,33 +54,84 @@ class MappingDetailsViewModel(
     private var isSaving = false
 
     init {
-        if (mapUrlModel != null) {
-            apiUrl.value = mapUrlModel.url
-            successResponse.value = mapUrlModel.response
-            errorResponse.value =
-                getApplication<Application>().getString(R.string.kash_error_dummy_response)
-                    .formatToJson()
-            formatUrl()
-        } else {
-            viewModelScope.launch {
-                KashProxy.getMappingRepository().getMappingByUrl(url)?.let {
-                    apiUrl.value = it.url
-                    protocol.value = it.protocol
-                    apiHost.value = it.apiHost
-                    apiPath.value = it.path
-                    apiQueries.value = it.queries
-                    mapToSuccessResponse.value = it.mapToSuccess
-                    mappingNickName.value = it.mappingNickName
-                    httpCode.value = it.httpCode.toString()
-                    successResponse.value = it.successResponse
-                    errorResponse.value = it.errorResponse
-                    mappingEnabled.value = it.mappingEnabled
+        viewModelScope.launch {
+            url?.let { mappingUrl ->
+                val existingMapping = KashProxyLib.getMappingRepository().getMappingByUrl(mappingUrl)
+                when {
+                    existingMapping == null && mapUrlModel == null -> handleInvalidMapping(
+                        mappingUrl
+                    )
+
+                    mapUrlModel == null && existingMapping != null -> populateFromMapping(
+                        existingMapping
+                    )
+
+                    existingMapping == null && mapUrlModel != null -> createNewMappingResponse(
+                        mapUrlModel
+                    )
+
+                    existingMapping != null && mapUrlModel != null -> handleExistingMapping(
+                        existingMapping, mapUrlModel
+                    )
                 }
             }
+            formatUrl()
         }
+    }
 
-//        successResponse.value = getApplication<Application>().getString(R.string.dummy_response)
+    private fun handleExistingMapping(
+        mapping: ResponseMappingModel,
+        mapUrlModel: MapUrlModel
+    ) {
+        showAlertDialog(title = R.string.kash_existing_mapping_warning_title,
+            message = R.string.kash_existing_mapping_warning_msg,
+            positiveButtonTxt = R.string.kash_use_existing,
+            negativeButtonTxt = R.string.kash_use_new,
+            positiveClickListen = {
+                populateFromMapping(mapping)
+            },
+            negativeClickListen = {
+                createNewMappingResponse(mapUrlModel)
+            })
+    }
 
+    private fun populateFromMapping(mapping: ResponseMappingModel) {
+        apiUrl.value = mapping.url
+        protocol.value = mapping.protocol
+        apiHost.value = mapping.apiHost
+        apiPath.value = mapping.path
+        apiQueries.value = mapping.queries
+        mapToSuccessResponse.value = mapping.mapToSuccess
+        mappingNickName.value = mapping.mappingNickName
+        httpCode.value = mapping.httpCode.toString()
+        successResponse.value = mapping.successResponse
+        errorResponse.value = mapping.errorResponse
+        mappingEnabled.value = mapping.mappingEnabled
+    }
+
+
+    private fun createNewMappingResponse(mapUrlModel: MapUrlModel) {
+        apiUrl.value = mapUrlModel.url
+        successResponse.value = mapUrlModel.response
+        errorResponse.value =
+            getApplication<Application>().getString(R.string.kash_proxy_error_response_template)
+                .formatToJson()
+    }
+
+    private fun handleInvalidMapping(url: String) {
+        showAlertDialog(
+            title = R.string.kash_invalid_mapping,
+            message = R.string.kash_invalid_mapping_msg,
+            positiveButtonTxt = R.string.kash_create_new,
+            negativeButtonTxt = R.string.kash_cancel,
+            positiveClickListen = {
+                apiUrl.value = url
+                errorResponse.value =
+                    getApplication<Application>().getString(R.string.kash_proxy_error_response_template)
+                        .formatToJson()
+            },
+            negativeClickListen = { navigateBack() }
+        )
     }
 
     fun onApiUrlChanged(url: CharSequence?) {
@@ -139,18 +188,16 @@ class MappingDetailsViewModel(
 
     fun deleteMapping() {
         apiUrl.value?.let {
-            showAlertDialog(
-                title = R.string.kash_confirm,
+            showAlertDialog(title = R.string.kash_confirm,
                 message = R.string.kash_confirm_delete_mapping,
                 positiveButtonTxt = R.string.kash_delete,
                 negativeButtonTxt = R.string.kash_cancel,
                 positiveClickListen = {
                     viewModelScope.launch {
-                        KashProxy.getMappingRepository().deleteProxyMapping(it)
+                        KashProxyLib.getMappingRepository().deleteProxyMapping(it)
                         navigateBack()
                     }
-                }
-            )
+                })
         }
     }
 
@@ -190,8 +237,7 @@ class MappingDetailsViewModel(
         apiUrl.value?.let {
             if (isSaving) return else isSaving = true
             viewModelScope.launch {
-                ResponseMappingModel(
-                    url = it,
+                ResponseMappingModel(url = it,
                     protocol = protocol.value ?: "https",
                     apiHost = apiHost.value ?: "",
                     path = apiPath.value,
@@ -202,9 +248,8 @@ class MappingDetailsViewModel(
                         ?.toInt() ?: 400,
                     successResponse = successResponse.value,
                     errorResponse = errorResponse.value,
-                    mappingEnabled = mappingEnabled.value == true
-                ).let {
-                    KashProxy.getMappingRepository().insertProxyMapping(it)
+                    mappingEnabled = mappingEnabled.value == true).let {
+                    KashProxyLib.getMappingRepository().insertProxyMapping(it)
                     isSaving = false
                     navigate(MappingDetailsFragmentDirections.showMappingsList())
                 }

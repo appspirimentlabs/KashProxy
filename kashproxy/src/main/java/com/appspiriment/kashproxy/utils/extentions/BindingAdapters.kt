@@ -30,7 +30,7 @@ import androidx.databinding.InverseBindingListener
  * Setting Observers
  ***************************************/
 @BindingAdapter("isVisible")
-fun View.showHide(show: Boolean) {
+internal fun View.showHide(show: Boolean) {
     visibility = if (show) View.VISIBLE else View.GONE
 }
 
@@ -38,7 +38,7 @@ fun View.showHide(show: Boolean) {
  * Setting Observers
  ***************************************/
 @BindingAdapter("errorRes")
-fun TextView.setTextError(resId: Int?) {
+internal fun TextView.setTextError(resId: Int?) {
     return try {
         error = resId?.let { context.resources.getString(it) }
     } catch (e: Exception) {
@@ -51,7 +51,7 @@ fun TextView.setTextError(resId: Int?) {
  * Setting Observers
  ***************************************/
 @BindingAdapter("entries")
-fun Spinner.setEntries(@ArrayRes entries: Int) {
+internal fun Spinner.setEntries(@ArrayRes entries: Int) {
     adapter = ArrayAdapter.createFromResource(
         context,
         entries,
@@ -66,7 +66,7 @@ fun Spinner.setEntries(@ArrayRes entries: Int) {
  * Setting Observers
  ***************************************/
 @BindingAdapter("onDone")
-fun EditText.onDone(callback: () -> Unit) {
+internal fun EditText.onDone(callback: () -> Unit) {
     setOnEditorActionListener { _, actionId, _ ->
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             callback.invoke()
@@ -80,7 +80,7 @@ fun EditText.onDone(callback: () -> Unit) {
  * Setting Observers
  ***************************************/
 @BindingAdapter(value = ["selectedValue", "selectedValueAttrChanged"], requireAll = false)
-fun Spinner.bindSpinnerData(
+internal fun Spinner.bindSpinnerData(
     newSelectedValue: String?,
     newTextAttrChanged: InverseBindingListener
 ) {
@@ -95,7 +95,7 @@ fun Spinner.bindSpinnerData(
 }
 
 @InverseBindingAdapter(attribute = "selectedValue", event = "selectedValueAttrChanged")
-fun Spinner.captureSelectedValue(): String? {
+internal fun Spinner.captureSelectedValue(): String? {
     return selectedItem.toString()
 }
 

@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.appspiriment.kashproxy.R
 
-open class NavigationActivity : AppCompatActivity() {
+internal open class NavigationActivity : AppCompatActivity() {
     private val navHostFragment by lazy {
         supportFragmentManager.findFragmentById(
             R.id.nav_host_container

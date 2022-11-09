@@ -57,15 +57,14 @@ tasks.withType(Test) {
 
 dependencies {
 
-    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
     ext.navigation_version = '2.5.1'
     ext.koin_version = '3.2.0'
     ext.koin_ksp_version = '1.0.0'
     ext.room_version = "2.4.3"
 
     implementation 'com.google.code.gson:gson:2.10'
-
     implementation "androidx.appcompat:appcompat:1.5.1"
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.9.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation "androidx.multidex:multidex:2.0.1"
     implementation 'androidx.core:core-ktx:1.9.0'

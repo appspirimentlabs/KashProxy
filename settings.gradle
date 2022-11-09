@@ -16,3 +16,5 @@ rootProject.name = "KashProxy"
 include ':app'
 include ':kashproxy'
 include ':chucker'
+include ':library'
+include ':library-no-op'

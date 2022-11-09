@@ -7,7 +7,7 @@ import com.appspiriment.kashproxy.ui.model.MappingItem
 import com.appspiriment.kashproxy.utils.events.SingleLiveData
 import com.appspiriment.kashproxy.utils.extentions.formatToJson
 
-class ResponseEditingViewModel : BaseViewModel() {
+internal class ResponseEditingViewModel : BaseViewModel() {
 
 
     val httpCode = MutableLiveData("400")

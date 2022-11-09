@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">KashProxy</string>
+    <string name="app_name">KashProxy Demo</string>
+    <string name="app_name_title">Demo Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_data_cta">Get Data</string>
@@ -8,4 +9,7 @@
     <string name="view_mappings">Mappings</string>
     <string name="url_copied">Url copied to clipboard!</string>
     <string name="view_logs">Logs</string>
+    <string name="host">Host:</string>
+    <string name="path_title">Path:</string>
+    <string name="response_body">Response Body:</string>
 </resources>

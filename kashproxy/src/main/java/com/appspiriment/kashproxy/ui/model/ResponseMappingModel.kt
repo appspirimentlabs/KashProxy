@@ -15,7 +15,7 @@ import java.net.URL
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-data class ResponseMappingModel(
+internal data class ResponseMappingModel(
     val url: String,
     val protocol: String,
     val apiHost: String,

@@ -1,20 +1,14 @@
 package com.appspiriment.kashproxy.utils
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
-import android.util.LongSparseArray
-import android.util.SparseArray
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.appspiriment.kashproxy.ui.main.KashProxyActivity
 import com.appspiriment.kashproxy.R
-import com.appspiriment.kashproxy.di.KashProxy
-import okhttp3.internal.notify
 import java.util.HashSet
 
 

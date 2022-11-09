@@ -8,19 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.appspiriment.kashproxy.R
 import com.appspiriment.kashproxy.BR
+import com.appspiriment.kashproxy.R
 import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
-import com.appspiriment.kashproxy.ui.adapter.BaseListAdapter
+import com.appspiriment.kashproxy.data.preference.saveKashProxyMappingEnabled
 import com.appspiriment.kashproxy.databinding.FragmentResponseMapListBinding
 import com.appspiriment.kashproxy.databinding.LayoutProxyMappingListItemBinding
-import com.appspiriment.kashproxy.network.KashProxyInterceptor
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
+import com.appspiriment.kashproxy.utils.baseclasses.BaseListAdapter
 import com.appspiriment.kashproxy.utils.extentions.observeData
-import com.appspiriment.kashproxy.data.preference.saveBoolPrefs
-import com.appspiriment.kashproxy.data.preference.saveKashProxyMappingEnabled
 
-class ResponseMapListFragment : Fragment() {
+internal class ResponseMapListFragment : Fragment() {
 
     private val viewModel: ResponseMapListViewModel by viewModels()
 

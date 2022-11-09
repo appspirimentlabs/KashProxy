@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-open class SingleLiveData<T> : MutableLiveData<T>() {
+internal open class SingleLiveData<T> : MutableLiveData<T>() {
         private val pending = AtomicBoolean(false)
         @MainThread
         override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {

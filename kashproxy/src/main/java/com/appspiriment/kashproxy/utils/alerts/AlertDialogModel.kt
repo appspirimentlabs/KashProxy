@@ -10,7 +10,7 @@ package com.appspiriment.kashproxy.utils.alerts
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-data class AlertDialogModel (
+internal data class AlertDialogModel (
     val title: Any,
     val message: Any,
     val view: Any? = null,

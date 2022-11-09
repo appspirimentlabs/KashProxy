@@ -4,7 +4,7 @@ import androidx.core.text.isDigitsOnly
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
 import java.net.URI
 
-class ResponseMappingRepository(val localDataSource: LocalDataSource) {
+internal class ResponseMappingRepository(val localDataSource: LocalDataSource) {
 
     suspend fun insertProxyMapping(mapping: ResponseMappingModel) =
         localDataSource.insertProxyMapping(mapping)

@@ -2,7 +2,7 @@ package com.appspiriment.kashproxy.network
 
 import android.content.Context
 import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
-import com.appspiriment.kashproxy.di.KashProxy
+import com.appspiriment.kashproxy.di.KashProxyLib
 import com.appspiriment.kashproxy.utils.NotificationUtils
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -35,7 +35,7 @@ class KashProxyInterceptor internal constructor(val context: Context) : Intercep
     }
 
     private suspend fun getMappedResponse(request: Request): Response? {
-        return KashProxy
+        return KashProxyLib
             .getMappingRepository()
             .getMappingByUrl(request.url.toString())?.let { mapping ->
                 if (mapping.mappingEnabled) {
