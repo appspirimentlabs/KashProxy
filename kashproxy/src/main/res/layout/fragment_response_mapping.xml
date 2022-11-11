@@ -97,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/kash_padding_standard_small"
-                android:checkedButton="@={viewModel.selectedResponseMapping}"
+                android:checkedButton="@{viewModel.selectedResponseMapping}"
                 android:onCheckedChanged="@{(view, selectedId) -> viewModel.onResponseTypeChanged(selectedId)}"
                 android:orientation="horizontal"
                 android:weightSum="2"
@@ -145,7 +145,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/kash_padding_standard_xxlarge"
-                android:drawableStart="@{viewModel.mapToSuccessResponse ? @drawable/kashproxy_ic_checked_circle : null}"
                 android:gravity="center"
                 android:text="@string/kash_success_response"
                 android:textAlignment="gravity"
@@ -182,7 +181,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/kash_padding_standard_xlarge"
-                android:drawableStart="@{viewModel.mapToSuccessResponse ? null : @drawable/kashproxy_ic_checked_circle}"
                 android:gravity="center"
                 android:text="@string/kash_error_response"
                 android:textAlignment="gravity"
@@ -219,7 +217,7 @@
                 android:id="@+id/layout_actions_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/kash_padding_standard_xlarge"
+                android:layout_marginTop="@dimen/kash_padding_standard_xxlarge"
                 app:layout_constraintTop_toBottomOf="@+id/tv_error_response">
 
                 <CheckBox
@@ -281,7 +279,7 @@
                 style="@style/KashButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/kash_padding_standard_xlarge"
+                android:layout_marginTop="@dimen/kash_padding_standard_xxlarge"
                 android:onClick="@{()->viewModel.saveMapping()}"
                 android:text="@string/kash_save_mapping"
                 app:layout_constraintTop_toBottomOf="@+id/layout_actions_container" />

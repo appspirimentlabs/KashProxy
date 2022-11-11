@@ -36,4 +36,17 @@ internal class ResponseMapListViewModel(application: Application): AndroidViewMo
         openMappingDetails.value = url
     }
 
+    fun changeResponseType(model: ResponseMappingModel, toSuccess:Boolean){
+        viewModelScope.launch {
+            KashProxyLib.getMappingRepository().insertProxyMapping(model.apply { mapToSuccess = toSuccess })
+            getMappingList()
+        }
+    }
+    fun enableMapping(model: ResponseMappingModel, enable:Boolean){
+        viewModelScope.launch {
+            KashProxyLib.getMappingRepository().insertProxyMapping(model.apply { mappingEnabled = enable })
+            getMappingList()
+        }
+    }
+
 }

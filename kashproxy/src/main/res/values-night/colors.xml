@@ -12,9 +12,6 @@
     <color name="kash_surface">#FFFFFF</color>
     <color name="kash_check_mark_color">#105F00</color>
     <color name="kash_rewrite_chip_color">#2196F3</color>
-    <color name="kash_rewrite_chip_color_disabled">#808191</color>
-    <color name="kash_rewrite_chip_text_color_disabled">#11164D</color>
-    <color name="kash_rewrite_chip_text_color">#ffffff</color>
     <color name="kash_text_error">#E91E1E</color>
     <color name="kash_chip_rewite_status">#F44336</color>
     <color name="kash_chip_response_map">#009637</color>

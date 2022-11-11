@@ -21,12 +21,12 @@ internal data class ResponseMappingModel(
     val apiHost: String,
     val path: String?,
     val queries: String?,
-    val mapToSuccess: Boolean,
+    var mapToSuccess: Boolean,
     val mappingNickName: String?,
     val httpCode: Int,
     val successResponse: String?,
     val errorResponse: String?,
-    val mappingEnabled: Boolean
+    var mappingEnabled: Boolean
 ){
     fun toJson() = Gson().toJson(this)
 

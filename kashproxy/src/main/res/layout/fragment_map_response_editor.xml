@@ -114,7 +114,7 @@
                     android:id="@+id/rd_success_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/kashproxy_ic_check_mark_circled"
+                    android:button="@drawable/kashproxy_ic_select_check_mark_circled"
                     android:buttonTint="@color/kash_primary_button_color"
                     android:paddingStart="@dimen/kash_padding_standard_small"
                     android:text="@string/kash_success_response" />
@@ -123,7 +123,7 @@
                     android:id="@+id/rd_error_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/kashproxy_ic_check_mark_circled"
+                    android:button="@drawable/kashproxy_ic_select_check_mark_circled"
                     android:buttonTint="@color/kash_primary_button_color"
                     android:layout_marginStart="@dimen/kash_padding_standard_medium"
                     android:paddingStart="@dimen/kash_padding_standard_small"

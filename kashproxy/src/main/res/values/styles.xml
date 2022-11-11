@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="KashChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
-        <item name="android:textColor">@color/kash_rewrite_chip_text_color</item>
-        <item name="android:textSize">12sp</item>
-        <item name="ensureMinTouchTargetSize">false</item>
-
-    </style>
-
-    <style name="KashDisabledChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
-        <item name="android:textColor">@color/kash_rewrite_chip_text_color_disabled</item>
-        <item name="android:textSize">12sp</item>
-    </style>
 
     <style name="KashButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/kashproxy_bg_curvrect_24_strk_transparent_clr_primary</item>
@@ -20,4 +9,5 @@
         <item name="android:gravity">center</item>
         <item name="android:textAlignment">gravity</item>
     </style>
+
 </resources>

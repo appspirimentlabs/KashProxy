@@ -3,20 +3,10 @@
     <string name="kash_proxy_notification">KashProxy Mapping Enabled!</string>
     <string name="kash_proxy_map_notification">Mapping API Responses</string>
     <string name="kash_proxy_notification_desc">KashProxy Mapping Requests</string>
-    <string name="kash_protocol">Protocol: </string>
     <string name="kash_delete">Delete</string>
     <string name="kash_edit">Edit</string>
-    <string name="kash_host">Host:</string>
-    <string name="kash_host_hint">Enter the host name without protocol</string>
-    <string name="kash_url_hint">Enter or paste the URL</string>
-    <string name="kash_path_title">Path: </string>
-    <string name="kash_path_hint">Enter path (Optional)</string>
-    <string name="kash_queries_title">Queries:</string>
-    <string name="kash_queries_hint">Queries (Optional)</string>
-    <string name="kash_rewrite_enabled">Rewrite Response Status</string>
-    <string name="kash_add">Add</string>
+    <string name="kash_host_hint">Enter the url to fetch</string>
     <string name="kash_rewriting_status">Rewriting</string>
-    <string name="kash_mapping_response">Mapping</string>
     <string name="kash_mapping_list_title">Response Mappings</string>
     <string name="kash_response_code_map_title">Map Response</string>
     <string name="kash_add_mapping">Add Mapping</string>
@@ -24,20 +14,14 @@
     <string name="kash_please_select_a_value">Please enter a value!</string>
     <string name="kash_convert_status_from">Error Http Status:</string>
     <string name="kash_to_status">To status:</string>
-    <string name="kash_map_to_status">Change status to:</string>
     <string name="kash_status_code">Status Code</string>
     <string name="kash_confirm">Confirm</string>
-    <string name="kash_confirm_remove_status_mapping">Are you sure to remove this mapping?</string>
-    <string name="kash_remove">Remove</string>
     <string name="kash_cancel">Cancel</string>
-    <string name="kash_map_response_prompt">Map Response Body</string>
-    <string name="kash_enable_mapping">Enable</string>
     <string name="kash_enabled">Enabled</string>
     <string name="kash_disabled">Disabled</string>
     <string name="kash_response_body">Response Body:</string>
     <string name="kash_pref_file_name">KashProxyPrefs</string>
     <string name="kash_confirm_delete_mapping">Are you sure to delete this mapping?</string>
-    <string name="kash_status_map_chip_text">%1$s -> %2$s</string>
     <string name="kash_no_path_specified">No path specified</string>
     <string name="kash_no_queries_specified">No queries specified</string>
     <string name="kash_url">URL:</string>
@@ -49,8 +33,7 @@
     <string name="kash_error">Error</string>
     <string name="kash_response_type">Response Type:</string>
     <string name="kash_map_response_to">Map response to:</string>
-    <string name="kash_error_message">Error Message</string>
-    <string name="kash_error_code">Error Code</string>
+    <string name="kash_map_to">Map To</string>
     <string name="kash_click_to_collapse">Collapse</string>
     <string name="kash_click_to_expand">Expand</string>
     <string name="kash_proxy_error_response_template"><![CDATA[{
@@ -58,7 +41,6 @@
        \"errorMessage\":\"Test Error Message\"
     }]]>
     </string>
-    <string name="dummy_response">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu neque magna. Suspendisse potenti. In hac habitasse platea dictumst. Cras eros lectus, feugiat at erat in, pulvinar feugiat augue. Praesent ante odio, malesuada quis commodo et, aliquet sed tellus. Curabitur laoreet arcu massa, in elementum dolor sollicitudin vitae. Donec quis justo in dui vestibulum semper in a odio. Mauris neque enim, dictum porttitor mauris ac, condimentum pretium diam. Nullam luctus nibh nec elementum efficitur.\n\nVestibulum est ante, blandit sit amet feugiat in, varius ut metus. Nullam malesuada mi iaculis auctor tristique. Donec elementum nisi nibh, eu elementum lectus cursus iaculis. Donec ornare mauris eget enim finibus, ut suscipit ligula facilisis. Suspendisse posuere interdum dui, lobortis varius neque facilisis vel. Phasellus velit ligula, feugiat a dictum vel, bibendum eget massa. Nunc at sapien in ipsum pellentesque vehicula ut varius mauris. In dignissim sollicitudin mauris quis auctor. Nam non rutrum urna. Sed at eleifend turpis, quis laoreet tellus. Sed commodo nulla vel nibh consequat tristique. Etiam venenatis id leo id consequat. Integer viverra quam quis lorem mollis iaculis. Vivamus maximus varius diam sed vehicula. Duis cursus sem lacus, ut ultrices risus aliquet eu. Praesent nec volutpat ipsum, eu pretium quam.\n\nSed imperdiet congue est, quis semper lorem accumsan vitae. Nulla tempus nulla odio, ut vulputate neque bibendum vel. Cras tincidunt dui vitae justo auctor, a dictum risus porta. Fusce efficitur finibus tortor, eu porta dui porttitor sit amet. Aenean id ligula id magna ultricies pharetra. Suspendisse in mi odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ante est, tristique non nisl a, dignissim vulputate nunc. Vestibulum pharetra dolor et odio maximus, in tempus sem ultricies. Suspendisse pulvinar, nisl quis pharetra facilisis, tellus ex tincidunt nisi, ac pretium lectus turpis in magna. Sed vitae ex lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Cras commodo mauris nec metus efficitur ultricies in id arcu. Suspendisse potenti.\n\nSuspendisse tincidunt, justo tempor maximus faucibus, eros orci tempor tellus, scelerisque suscipit tortor enim sit amet leo. Sed laoreet neque vel neque consequat, non vehicula tellus porta. Mauris vitae ornare massa. Mauris sollicitudin hendrerit tempus. Curabitur vel justo quam. Suspendisse mollis sit amet justo sed laoreet. Donec gravida finibus mauris in vulputate. Sed sed dolor vel sapien ultrices vulputate. Vestibulum venenatis commodo ligula non consequat. Curabitur vel interdum augue. Integer vel ullamcorper eros, et placerat ligula. Phasellus ultricies maximus urna sit amet mattis. Pellentesque tempus eget massa non viverra.\n\nMorbi gravida ac lectus ac consectetur. Pellentesque et nisl vel erat sodales rhoncus vel quis sem. Sed hendrerit tincidunt diam, in blandit neque euismod id. Curabitur congue in diam pellentesque pretium. Donec nulla mi, elementum id auctor ac, porta nec elit. Nullam sagittis fermentum nulla eget luctus. Nulla facilisi. Maecenas fermentum ligula risus, non bibendum augue pulvinar non. Curabitur ut cursus mi. Aliquam condimentum felis vel ullamcorper egestas. Aliquam sollicitudin nunc odio, vel hendrerit metus vehicula id. In volutpat felis sit amet sapien posuere egestas. In hac habitasse platea dictumst. Maecenas orci ante, viverra nec dignissim vel, accumsan non ligula. Quisque nec libero odio. Etiam cursus ac erat vel auctor.\n\nPellentesque metus felis, efficitur id tellus et, facilisis malesuada est. Praesent luctus nisi in nisl posuere pharetra non condimentum nibh. Aenean gravida non enim sed scelerisque. Phasellus ullamcorper condimentum vulputate. Phasellus tristique turpis a porta iaculis. Ut lacinia malesuada nulla, vel egestas nibh dapibus aliquam. Vivamus sagittis non ex at venenatis. Donec ultrices semper rhoncus.\n\nSuspendisse ultrices convallis diam et rutrum. In et ex massa. Nunc viverra ante magna, non venenatis dui volutpat in. In tristique sapien eget nibh lobortis mollis eget at metus. Donec congue justo eget vestibulum malesuada. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam auctor massa non diam bibendum suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam mi magna, efficitur ac pretium at, suscipit ut nisi. Fusce cursus convallis eros. Donec ut porta arcu. Etiam vel diam scelerisque, elementum sem at, gravida augue.\n\nDonec lacinia tortor et metus elementum, eu imperdiet lacus porttitor. Aliquam et orci ullamcorper, porta neque a, tempus neque. Nulla facilisi. Nam ac tortor at ligula faucibus feugiat. Quisque mollis sed orci vitae accumsan. Fusce suscipit massa purus, in consectetur lacus rutrum ut. Nullam eget ipsum in ligula suscipit consequat. Quisque ut libero non justo laoreet malesuada. Proin rhoncus lorem quis eros consequat, quis egestas nibh tincidunt. In turpis lacus, auctor nec mattis a, aliquam ac lacus. Nulla volutpat augue eu cursus bibendum. Integer ex turpis, aliquet at augue in, consectetur sodales odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo erat eget neque blandit, a posuere tellus sollicitudin. Proin vel lacus odio. Sed at pharetra massa.\n\nProin aliquet dolor in pellentesque euismod. Aenean finibus justo vitae ante elementum, sed ultrices orci dapibus. Nullam ultricies ex sed metus accumsan, ut fringilla arcu dignissim. Aenean turpis mauris, tincidunt tempus ultricies nec, gravida ut lacus. Nulla eget dui vitae dui scelerisque eleifend. Cras eu condimentum magna, at ullamcorper lacus. Mauris nec dolor lacus. Sed vestibulum volutpat mauris, non porttitor risus condimentum ut. Proin faucibus, felis ut eleifend scelerisque, metus lacus elementum sapien, non ultrices urna ipsum et ipsum. Sed vel ultricies mauris, nec euismod nulla.\n\nAliquam dignissim, neque id ultricies vulputate, turpis quam gravida diam, eu viverra enim massa vitae elit. Ut imperdiet, nulla sed mattis bibendum, tellus ante consequat arcu, quis eleifend ex eros interdum mi. Mauris in augue urna. Pellentesque accumsan commodo urna, ac pulvinar nisl laoreet nec. Proin luctus, purus id tincidunt finibus, quam dui egestas turpis, et cursus purus ligula nec dui. Integer placerat ligula sit amet euismod hendrerit. Nam porttitor lorem eget ligula ultrices fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget diam non nulla vehicula egestas. Suspendisse sed nisl arcu. Pellentesque mauris libero, vulputate sed nisi eu, eleifend convallis mi. Proin vitae facilisis metus, non consectetur odio. Integer sem odio, lobortis a nibh a, egestas commodo est. Maecenas dapibus varius dolor, eu ultrices ipsum iaculis at.</string>
     <string name="kash_save_response">Save Responses</string>
     <string name="kash_existing_mapping_warning_title">Mapping Exists</string>
     <string name="kash_existing_mapping_warning_msg">There is a mapping already existing for this URL.\n\nYou can either use the existing responses or copy the new response.\n\nWhich one do you prefer?</string>

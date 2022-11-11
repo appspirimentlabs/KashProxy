@@ -1,10 +1,13 @@
 package com.appspiriment.kashproxy.demo.network
 
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 
 /*********************************************************
- * Class   :  FirstApi
+ * Class   :  ThirdApi
  * Author  :  Arun Nair
  * Created :  16/09/2022
  *******************************************************
@@ -14,17 +17,12 @@ import retrofit2.http.GET
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
 
-interface FirstApi {
+interface NetworkApi {
 
-    @GET("http://digithreads.com/api1/path1/path1-13.json")
-    suspend fun digithreads(): String
+    @GET("/{path}")
+    suspend fun getUrlPathResult(
+        @Path(value = "path", encoded = true) path: String,
+        @QueryMap(encoded = true) options: Map<String, String>
+    ): String
 
-    @GET("/api1/path1/path1-1.json")
-    suspend fun path1(): String
-
-    @GET("/api1/path2/path2-1.json")
-    suspend fun path2(): String
-
-    @GET("/api1/path3/path3-1.json")
-    suspend fun path3(): String
 }

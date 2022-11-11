@@ -16,7 +16,7 @@ interface ResponseMappingDao {
     @Query("DELETE FROM responseMapping WHERE apiUrl=:apiUrl")
     suspend fun deleteProxyMapping(apiUrl: String)
 
-    @Query("SELECT * FROM responseMapping")
+    @Query("SELECT * FROM responseMapping ORDER BY apiUrl")
     suspend fun getAllMapping(): List<ResponseMappingEntity>
 
     @Query("SELECT * FROM responseMapping WHERE apiUrl = :url LIMIT 1")

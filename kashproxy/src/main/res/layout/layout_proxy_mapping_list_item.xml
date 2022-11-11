@@ -33,85 +33,115 @@
                 android:id="@+id/tv_protocol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:drawablePadding="16dp"
+                android:gravity="center_vertical"
                 android:text="@{model.protocol}"
-                android:textSize="14sp"
-                android:textStyle="bold"
                 android:textAllCaps="true"
                 android:textColor="@color/kash_text_error"
-                tools:text="https"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="https" />
+
             <TextView
                 android:id="@+id/tv_host"
                 android:layout_width="@dimen/kash_padding_standard_none"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginEnd="@dimen/kash_padding_standard_medium"
+                android:layout_marginTop="@dimen/kash_padding_standard_medium"
+                android:gravity="center_vertical"
                 android:text="@{model.apiHost}"
-                android:textSize="17sp"
-                android:textStyle="bold"
                 android:textColor="@color/kash_primary_text_color"
-                tools:text="stackoverflow.com"
-                app:layout_constraintEnd_toStartOf="@+id/tv_protocol"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_protocol"
+                tools:text="stackoverflow.com" />
 
             <TextView
                 android:id="@+id/tv_path"
                 android:layout_width="@dimen/kash_padding_standard_none"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginTop="@dimen/kash_padding_standard_xsmall"
-                android:layout_marginEnd="@dimen/kash_padding_standard_medium"
-                android:text="@{model.path}"
+                android:gravity="center_vertical"
                 android:hint="@string/kash_no_path_specified"
+                android:text="@{model.path}"
                 android:textColor="@color/kash_primary_text_color"
-                tools:text="https://stackoverflow.com/questions/8716289/is-it-possible-to-rotate-a-drawable-in-the-xml-description"
+                app:layout_constraintEnd_toEndOf="@+id/tv_host"
                 app:layout_constraintStart_toStartOf="@+id/tv_host"
-                app:layout_constraintEnd_toStartOf="@+id/tv_protocol"
-                app:layout_constraintTop_toBottomOf="@+id/tv_host" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_host"
+                tools:text="https://stackoverflow.com/questions/8716289/is-it-possible-to-rotate-a-drawable-in-the-xml-description" />
 
             <TextView
                 android:id="@+id/tv_queries"
                 android:layout_width="@dimen/kash_padding_standard_none"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginTop="@dimen/kash_padding_standard_xsmall"
-                android:layout_marginEnd="@dimen/kash_padding_standard_medium"
-                android:text="@{model.queries}"
+                android:gravity="center_vertical"
                 android:hint="@string/kash_no_queries_specified"
+                android:text="@{model.queries}"
+                android:textColor="@color/kash_primary_text_dim_color"
                 android:textSize="13sp"
                 android:textStyle="italic"
-                android:textColor="@color/kash_primary_text_dim_color"
-                tools:text="https://stackoverflow.com/questions/8716289/is-it-possible-to-rotate-a-drawable-in-the-xml-description"
+                app:isVisible="@{model.queries != null &amp;&amp; model.queries.blank == false}"
+                app:layout_constraintEnd_toEndOf="@+id/tv_host"
                 app:layout_constraintStart_toStartOf="@+id/tv_host"
-                app:layout_constraintEnd_toStartOf="@+id/tv_protocol"
-                app:layout_constraintTop_toBottomOf="@+id/tv_path" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_path"
+                tools:text="https://stackoverflow.com/questions/8716289/is-it-possible-to-rotate-a-drawable-in-the-xml-description" />
+
+            <View
+                android:id="@+id/view_border"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.4"
+                android:background="@color/kash_action_item_grey"
+                app:layout_constraintTop_toBottomOf="@id/tv_queries"
+                android:layout_marginTop="@dimen/kash_padding_standard_xxlarge"/>
             <TextView
-                android:id="@+id/tv_rewrite"
+                android:id="@+id/tv_map_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/kash_padding_standard_xlarge"
-                android:layout_marginTop="@dimen/kash_padding_standard_small"
-                android:text="@string/kash_rewriting_status"
+                android:layout_marginEnd="@dimen/kash_padding_standard_small"
+                android:gravity="center_vertical"
+                android:text="@string/kash_map_to"
+                android:textColor="@color/kash_primary_text_dim_color"
                 android:textSize="13sp"
-                android:textColor="@color/kash_chip_rewite_status"
-                app:layout_constraintTop_toBottomOf="@+id/tv_queries"
+                app:layout_constraintEnd_toStartOf="@+id/chk_response_map_type"
+                app:layout_constraintBottom_toBottomOf="@+id/chk_response_map_type"
+                app:layout_constraintTop_toTopOf="@+id/chk_response_map_type"/>
+
+            <ToggleButton
+                android:id="@+id/chk_response_map_type"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/kash_padding_standard_xmlarge"
+                android:layout_marginTop="@dimen/kash_padding_standard_medium"
+                android:checked="@{model.mapToSuccess}"
+                android:onCheckedChanged="@{(v,checked)->viewModel.changeResponseType(model, checked)}"
+                android:textColor="@color/kash_primary_text_light_color"
+                android:background="@drawable/kashproxy_ic_select_response_bg"
+                android:textOff="@string/kash_error"
+                android:textOn="@string/kash_success"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_border"/>
+
+            <CheckBox
+                android:id="@+id/chk_enable_mapping"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/kash_padding_standard_xmlarge"
+                android:layout_marginTop="@dimen/kash_padding_standard_medium"
+                android:button ="@drawable/kashproxy_ic_select_check_mark_circled"
+                android:buttonTint="@color/kash_primary_button_color"
+                android:paddingStart="@dimen/kash_padding_standard_xsmall"
+                android:text="@string/kash_enabled"
+                android:checked="@{model.mappingEnabled}"
+                android:onCheckedChanged="@{(v,checked)->viewModel.enableMapping(model, checked)}"
+                android:textColor="@color/kash_primary_text_color"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:clickable="false"/>
-            <TextView
-                android:id="@+id/tv_response_map"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kash_mapping_response"
-                android:textColor="@color/kash_chip_response_map"
-                android:textSize="13sp"
-                android:layout_marginTop="@dimen/kash_padding_standard_small"
-                android:layout_marginStart="@dimen/kash_padding_standard_small"
-                app:layout_constraintStart_toEndOf="@+id/tv_rewrite"
-                app:layout_constraintTop_toBottomOf="@+id/tv_queries" />
+                app:layout_constraintTop_toBottomOf="@+id/view_border" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

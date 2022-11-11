@@ -74,23 +74,6 @@ internal class MappingDetailsFragment : Fragment() {
                     }
             }
         }
-
-        observeData(viewModel.deleteMapping) {
-//            it?.let { url ->
-//                activity?.showAlertDialog(
-//                    title = R.string.kash_confirm,
-//                    message = R.string.kash_confirm_delete_mapping,
-//                    positiveButton = R.string.kash_delete,
-//                    negativeButton = R.string.kash_cancel,
-//                    positiveClickListen = {
-//                        viewModel.viewModelScope.launch {
-//                            KashProxyApp.getMappingRepository().deleteProxyMapping(it)
-//                            findNavController().navigateUp()
-//                        }
-//                    }
-//                )
-//            }
-        }
     }
 
 

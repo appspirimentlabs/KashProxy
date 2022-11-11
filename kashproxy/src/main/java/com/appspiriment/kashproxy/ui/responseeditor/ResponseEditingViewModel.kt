@@ -7,13 +7,13 @@ import com.appspiriment.kashproxy.ui.model.MappingItem
 import com.appspiriment.kashproxy.utils.events.SingleLiveData
 import com.appspiriment.kashproxy.utils.extentions.formatToJson
 
-internal class ResponseEditingViewModel : BaseViewModel() {
+internal class ResponseEditingViewModel(mappingItem: MappingItem?) : BaseViewModel() {
 
 
     val httpCode = MutableLiveData("400")
     val httpCodeError = MutableLiveData<Int?>()
     val isSuccessResponse = MutableLiveData(false)
-    val selectedResponseType = MutableLiveData<Int>(R.id.rd_error_type)
+    val selectedResponseType = MutableLiveData(R.id.rd_error_type)
 
 
     val responseSuccessBody = MutableLiveData("")
@@ -51,9 +51,10 @@ internal class ResponseEditingViewModel : BaseViewModel() {
         }
     }
 
-    fun initialize(mappingItem: MappingItem?) {
+   init {
         mappingItem?.let {
             httpCode.value = it.httpCode.takeUnless { it.isNullOrBlank() }?: "400"
+            selectedResponseType.value = if(it.mapToSuccess) R.id.rd_success_type else R.id.rd_error_type
             responseSuccessBody.value = it.successResponse
             responseErrorBody.value = it.errorResponse
         }

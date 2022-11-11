@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="padding_standard_none">0dp</dimen>
-    <dimen name="padding_standard_xxsmall">2dp</dimen>
     <dimen name="padding_standard_xsmall">4dp</dimen>
     <dimen name="padding_standard_small">8dp</dimen>
     <dimen name="padding_standard_medium">16dp</dimen>
@@ -9,9 +7,4 @@
     <dimen name="padding_standard_xlarge">24dp</dimen>
     <dimen name="padding_standard_xxlarge">32dp</dimen>
     <dimen name="padding_standard_xxxlarge">48dp</dimen>
-    <dimen name="padding_standard_huge">56dp</dimen>
-    <dimen name="padding_standard_xhuge">64dp</dimen>
-    <dimen name="eleveation_xxsmall">2dp</dimen>
-    <dimen name="eleveation_xsmall">4dp</dimen>
-    <dimen name="eleveation_small">8dp</dimen>
 </resources>

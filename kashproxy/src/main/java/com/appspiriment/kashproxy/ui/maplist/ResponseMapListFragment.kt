@@ -2,11 +2,16 @@ package com.appspiriment.kashproxy.ui.maplist
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.appspiriment.kashproxy.BR
 import com.appspiriment.kashproxy.R
@@ -55,14 +60,14 @@ internal class ResponseMapListFragment : Fragment() {
             setDisplayHomeAsUpEnabled(false)
         }
 
-        context?.isKashProxyMappingEnabled().let{
+        context?.isKashProxyMappingEnabled().let {
             viewModel.mappingEnabled.value = true
         }
-        observeData(viewModel.mappingEnabled){
+        observeData(viewModel.mappingEnabled) {
             context?.saveKashProxyMappingEnabled(it)
         }
 
-        observeData(viewModel.mappingList){
+        observeData(viewModel.mappingList) {
             adapter.submitList(it)
         }
 

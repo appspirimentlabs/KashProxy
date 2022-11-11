@@ -9,18 +9,31 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.appspiriment.kashproxy.databinding.FragmentMapResponseEditorBinding
+import com.appspiriment.kashproxy.ui.di.createWithFactory
+import com.appspiriment.kashproxy.ui.mappingdetail.MappingDetailsViewModel
 import com.appspiriment.kashproxy.utils.customview.KashProxyEditText
 import com.appspiriment.kashproxy.utils.extentions.observeData
 
 
 internal class ResponseEditingFragment : Fragment() {
 
-    private val viewModel: ResponseEditingViewModel by viewModels()
     private val args by navArgs<ResponseEditingFragmentArgs>()
     private var binding: FragmentMapResponseEditorBinding? = null
+
+
+    private val viewModel: ResponseEditingViewModel by lazy {
+        ViewModelProvider(
+            this,
+            createWithFactory {
+                ResponseEditingViewModel(args.mappingItem)
+            }
+        ).get(ResponseEditingViewModel::class.java)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,7 +68,6 @@ internal class ResponseEditingFragment : Fragment() {
 
     private fun initialize() {
         viewModel.let {
-            it.initialize(args.mappingItem)
             binding?.run {
                 txtSuccessResponse.setPasteListener { view -> it.onSuccessResponseChanged(view.text?.toString()) }
                 tvHttpCode.setPasteListener { view -> it.httpCodeChanged(view.text?.toString()) }

@@ -33,11 +33,13 @@ internal class MappingDetailsViewModel(
     val mappingNickName = MutableLiveData("")
 
     val httpCode = MutableLiveData("")
-    val mapToSuccessResponse = MutableLiveData(false)
+    val mapToSuccessResponse = MutableLiveData(true)
     val successResponse = MutableLiveData("")
     val errorResponse = MutableLiveData("")
 
-    val selectedResponseMapping = MutableLiveData(R.id.rd_error_type)
+    val selectedResponseMapping = mapToSuccessResponse.map {
+        if(it) R.id.rd_success_type else R.id.rd_error_type
+    }
     val successResponseVisible = MutableLiveData(false)
     val successResponseAction = successResponseVisible.map {
         if (it) R.string.kash_click_to_collapse else R.string.kash_click_to_expand
@@ -48,7 +50,6 @@ internal class MappingDetailsViewModel(
         if (it) R.string.kash_click_to_collapse else R.string.kash_click_to_expand
     }
 
-    val deleteMapping = SingleLiveData<String?>()
     val editMapping = SingleLiveData<MappingItem>()
 
     private var isSaving = false
@@ -182,7 +183,8 @@ internal class MappingDetailsViewModel(
         editMapping.value = MappingItem(
             httpCode = httpCode.value,
             successResponse = successResponse.value,
-            errorResponse = errorResponse.value
+            errorResponse = errorResponse.value,
+            mapToSuccess = mapToSuccessResponse.value == true
         )
     }
 

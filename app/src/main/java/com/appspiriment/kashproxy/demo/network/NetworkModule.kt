@@ -1,17 +1,22 @@
 package com.appspiriment.kashproxy.demo.network
 
 import android.content.Context
+import android.util.Log
 import com.appspiriment.kashproxy.api.KashProxy
 import com.appspiriment.kashproxy.demo.BuildConfig
-import com.appspiriment.kashproxy.demo.di.KashProxyDemoApp
 import com.google.gson.GsonBuilder
 import okhttp3.Cache
 import okhttp3.ConnectionSpec
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.create
+import java.net.URI
+import java.net.URL
 import java.util.concurrent.TimeUnit
 
 
@@ -29,14 +34,10 @@ import java.util.concurrent.TimeUnit
 /***************************************
  * Declarations
  ***************************************/
-class NetworkModule(context: Context) {
-    val retrofit by lazy { getRetrofit(context) }
+class NetworkModule(val context: Context) {
 
-    val firstApi by lazy { retrofit.create(FirstApi::class.java)}
-    val secondApi by lazy { retrofit.create(SecondApi::class.java)}
-    val thirdApi by lazy { retrofit.create(ThirdApi::class.java)}
 
-    fun getRetrofit(context: Context): Retrofit {
+    fun getRetrofit(baseurl: String): Retrofit {
         val cacheSize = (10 * 1024 * 1024).toLong() // 10 MB
         val cache = Cache(context.cacheDir, cacheSize)
         val client = OkHttpClient.Builder()
@@ -55,7 +56,7 @@ class NetworkModule(context: Context) {
         ).apply {
 
             connectTimeout(100, TimeUnit.SECONDS)
-            KashProxy.getInterceptors(context).forEach{
+            KashProxy.getInterceptors(context).forEach {
                 addInterceptor(it)
             }
             readTimeout(100, TimeUnit.SECONDS).build()
@@ -67,10 +68,18 @@ class NetworkModule(context: Context) {
             .create()
 
         return Retrofit.Builder().client(client.build())
-            .baseUrl(KashProxyDemoApp.baseUrl)
+            .baseUrl(baseurl)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
+    fun getNetworkApi(uri: URI): NetworkApi {
+        Log.e("Log", "${uri.toURL().protocol}://${uri.toURL().host}")
+        return getRetrofit("${uri.toURL().protocol}://${uri.toURL().host}").also {
+            Log.e("Log3", it.baseUrl().toString())
+        }.create(NetworkApi::class.java)
+    }
+
 }
+

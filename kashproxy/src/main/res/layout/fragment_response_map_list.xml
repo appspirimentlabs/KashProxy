@@ -29,19 +29,23 @@
             app:layout_constraintBottom_toBottomOf="@+id/chk_enable_map_response"
             app:layout_constraintEnd_toStartOf="@+id/chk_enable_map_response"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/chk_enable_map_response" />
 
-        <CheckBox
+        <ToggleButton
             android:id="@+id/chk_enable_map_response"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/kash_padding_standard_xxxlarge"
-            android:layout_marginTop="@dimen/kash_padding_standard_small"
-            android:layout_marginEnd="@dimen/kash_padding_standard_xlarge"
-            android:buttonTint="@color/kash_check_mark_color"
+            android:layout_height="@dimen/kash_padding_standard_xxlarge"
+            android:layout_marginTop="@dimen/kash_padding_standard_large"
+            android:layout_marginEnd="@dimen/kash_padding_standard_medium"
+            android:text="@string/kash_enabled"
+            android:background="@drawable/kashproxy_ic_select_enabled_bg"
             android:checked="@={viewModel.mappingEnabled}"
-            android:paddingStart="@dimen/kash_padding_standard_xsmall"
-            android:text="@string/kash_enable_mapping"
+            android:textColor="@{viewModel.mappingEnabled ? @color/kash_primary_text_light_color : @color/kash_primary_text_color}"
             android:textSize="15sp"
+            android:paddingStart="@{viewModel.mappingEnabled ? @dimen/kash_padding_standard_small : @dimen/kash_padding_standard_xsmall}"
+            android:paddingEnd="@{viewModel.mappingEnabled ? @dimen/kash_padding_standard_xsmall : @dimen/kash_padding_standard_small}"
+            android:drawableEnd="@{viewModel.mappingEnabled ? @drawable/kashproxy_ic_shape_checked_square : null}"
+            android:drawableStart="@{viewModel.mappingEnabled ? null : @drawable/kashproxy_ic_shape_square}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -50,7 +54,7 @@
             android:id="@+id/rcy_mappings"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/kash_padding_standard_large"
+            android:layout_marginTop="@dimen/kash_padding_standard_xlarge"
             android:layout_marginBottom="@dimen/kash_padding_standard_large"
             android:orientation="vertical"
             android:alpha="@{viewModel.mappingEnabled ? 1f : 0.5f}"
