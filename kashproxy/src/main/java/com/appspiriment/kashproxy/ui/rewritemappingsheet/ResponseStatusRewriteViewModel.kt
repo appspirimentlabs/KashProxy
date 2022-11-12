@@ -16,8 +16,8 @@ internal class ResponseStatusRewriteViewModel: BaseViewModel() {
     fun saveMapping(){
         dismissKeyBoard()
 
-        fromCodeError.value = if(fromCode.value == null) R.string.kash_please_select_a_value else null
-        toCodeError.value = if(toCode.value == null) R.string.kash_please_select_a_value else null
+        fromCodeError.value = if(fromCode.value == null) R.string.kashproxy_please_select_a_value else null
+        toCodeError.value = if(toCode.value == null) R.string.kashproxy_please_select_a_value else null
 
         if(fromCodeError.value == null && toCodeError.value == null){
             saveMapping.value = Unit

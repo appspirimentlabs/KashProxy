@@ -62,7 +62,7 @@ internal class ResponseEditingViewModel(mappingItem: MappingItem?) : BaseViewMod
 
     fun saveMappingItem() {
         if (httpCode.value.isNullOrBlank()) {
-            httpCodeError.value = R.string.kash_please_select_a_value
+            httpCodeError.value = R.string.kashproxy_please_select_a_value
             return
         } else httpCodeError.value = null
 

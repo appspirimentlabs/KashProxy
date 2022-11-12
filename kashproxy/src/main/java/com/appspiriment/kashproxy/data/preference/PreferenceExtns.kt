@@ -7,7 +7,7 @@ import com.appspiriment.kashproxy.R
 const val KEY_MAPPING_ENABLED = "kashProxyMappingEnabled"
 
 internal fun Context.getKashProxyPrefs() : SharedPreferences {
-    return getSharedPreferences(getString(R.string.kash_pref_file_name), Context.MODE_PRIVATE)
+    return getSharedPreferences(getString(R.string.kashproxy_pref_file_name), Context.MODE_PRIVATE)
 }
 
 internal fun Context.saveStringPrefs(prefName: String, prefValue: String?) {

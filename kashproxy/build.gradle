@@ -45,6 +45,8 @@ android {
         unitTests.returnDefaultValues = true
     }
 
+    resourcePrefix 'kashproxy_'
+
     packagingOptions {
         resources.excludes.add("META-INF/*")
     }

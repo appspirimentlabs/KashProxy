@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="@color/kash_primary_background" />
+    <solid android:color="@color/kashproxy_primary_background" />
     <corners
-        android:topLeftRadius="@dimen/kash_padding_standard_medium"
-        android:topRightRadius="@dimen/kash_padding_standard_medium" />
+        android:topLeftRadius="@dimen/kashproxy_padding_standard_medium"
+        android:topRightRadius="@dimen/kashproxy_padding_standard_medium" />
 </shape>

@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "KashProxy"
-include ':app'
+include ':demo'
 include ':kashproxy'
 include ':chucker'
 include ':library'

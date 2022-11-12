@@ -42,12 +42,12 @@ internal class MappingDetailsViewModel(
     }
     val successResponseVisible = MutableLiveData(false)
     val successResponseAction = successResponseVisible.map {
-        if (it) R.string.kash_click_to_collapse else R.string.kash_click_to_expand
+        if (it) R.string.kashproxy_click_to_collapse else R.string.kashproxy_click_to_expand
     }
 
     val errorResponseVisible = MutableLiveData(false)
     val errorResponseAction = errorResponseVisible.map {
-        if (it) R.string.kash_click_to_collapse else R.string.kash_click_to_expand
+        if (it) R.string.kashproxy_click_to_collapse else R.string.kashproxy_click_to_expand
     }
 
     val editMapping = SingleLiveData<MappingItem>()
@@ -84,10 +84,10 @@ internal class MappingDetailsViewModel(
         mapping: ResponseMappingModel,
         mapUrlModel: MapUrlModel
     ) {
-        showAlertDialog(title = R.string.kash_existing_mapping_warning_title,
-            message = R.string.kash_existing_mapping_warning_msg,
-            positiveButtonTxt = R.string.kash_use_existing,
-            negativeButtonTxt = R.string.kash_use_new,
+        showAlertDialog(title = R.string.kashproxy_existing_mapping_warning_title,
+            message = R.string.kashproxy_existing_mapping_warning_msg,
+            positiveButtonTxt = R.string.kashproxy_use_existing,
+            negativeButtonTxt = R.string.kashproxy_use_new,
             positiveClickListen = {
                 populateFromMapping(mapping)
             },
@@ -115,20 +115,20 @@ internal class MappingDetailsViewModel(
         apiUrl.value = mapUrlModel.url
         successResponse.value = mapUrlModel.response
         errorResponse.value =
-            getApplication<Application>().getString(R.string.kash_proxy_error_response_template)
+            getApplication<Application>().getString(R.string.kashproxy_proxy_error_response_template)
                 .formatToJson()
     }
 
     private fun handleInvalidMapping(url: String) {
         showAlertDialog(
-            title = R.string.kash_invalid_mapping,
-            message = R.string.kash_invalid_mapping_msg,
-            positiveButtonTxt = R.string.kash_create_new,
-            negativeButtonTxt = R.string.kash_cancel,
+            title = R.string.kashproxy_invalid_mapping,
+            message = R.string.kashproxy_invalid_mapping_msg,
+            positiveButtonTxt = R.string.kashproxy_create_new,
+            negativeButtonTxt = R.string.kashproxy_cancel,
             positiveClickListen = {
                 apiUrl.value = url
                 errorResponse.value =
-                    getApplication<Application>().getString(R.string.kash_proxy_error_response_template)
+                    getApplication<Application>().getString(R.string.kashproxy_proxy_error_response_template)
                         .formatToJson()
             },
             negativeClickListen = { navigateBack() }
@@ -190,10 +190,10 @@ internal class MappingDetailsViewModel(
 
     fun deleteMapping() {
         apiUrl.value?.let {
-            showAlertDialog(title = R.string.kash_confirm,
-                message = R.string.kash_confirm_delete_mapping,
-                positiveButtonTxt = R.string.kash_delete,
-                negativeButtonTxt = R.string.kash_cancel,
+            showAlertDialog(title = R.string.kashproxy_confirm,
+                message = R.string.kashproxy_confirm_delete_mapping,
+                positiveButtonTxt = R.string.kashproxy_delete,
+                negativeButtonTxt = R.string.kashproxy_cancel,
                 positiveClickListen = {
                     viewModelScope.launch {
                         KashProxyLib.getMappingRepository().deleteProxyMapping(it)
@@ -221,8 +221,8 @@ internal class MappingDetailsViewModel(
             }
             apiUrlError.value = null
         } catch (e: Exception) {
-            apiUrlError.value = R.string.kash_invalid_url
-            showToast(R.string.kash_invalid_url)
+            apiUrlError.value = R.string.kashproxy_invalid_url
+            showToast(R.string.kashproxy_invalid_url)
             e.printStackTrace()
         }
     }
@@ -230,7 +230,7 @@ internal class MappingDetailsViewModel(
     fun saveMapping() {
         formatUrl()
         if (apiUrl.value == null) {
-            apiUrlError.value = R.string.kash_please_select_a_value
+            apiUrlError.value = R.string.kashproxy_please_select_a_value
             return
         } else {
             apiUrlError.value = null

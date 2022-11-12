@@ -3,8 +3,8 @@
     android:shape="rectangle">
     <stroke
         android:width="1dp"
-        android:color="@color/kash_action_item_grey_dark"
+        android:color="@color/kashproxy_action_item_grey_dark"
         android:dashWidth="10px"
         android:dashGap="10px" />
-    <corners android:radius="@dimen/kash_padding_standard_small" />
+    <corners android:radius="@dimen/kashproxy_padding_standard_small" />
 </shape>

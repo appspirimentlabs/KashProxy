@@ -8,7 +8,7 @@
         <activity
             android:name=".ui.main.KashProxyActivity"
             android:exported="false"
-            android:theme="@style/Theme">
+            android:theme="@style/kashproxy_main_theme">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

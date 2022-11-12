@@ -51,7 +51,7 @@ internal class NotificationUtils(val context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 NOTIFICATION_CHANNEL_NAME,
-                context.getString(R.string.kash_proxy_notification_desc),
+                context.getString(R.string.kashproxy_proxy_notification_desc),
                 NotificationManager.IMPORTANCE_HIGH
             )
             mNotificationmanager.createNotificationChannel(notificationChannel)
@@ -155,13 +155,13 @@ internal class NotificationUtils(val context: Context) {
                 setContentTitle(
                     context.getString(
                         if(persistent)
-                            R.string.kash_proxy_notification
+                            R.string.kashproxy_proxy_notification
                         else
-                            R.string.kash_proxy_map_notification
+                            R.string.kashproxy_proxy_map_notification
                     )
                 )
                 color = ContextCompat.getColor(context,
-                    if( persistent) R.color.kash_error_color else R.color.kash_primary_color)
+                    if( persistent) R.color.kashproxy_error_color else R.color.kashproxy_primary_color)
                 setOngoing( persistent)
             }
         } else null
