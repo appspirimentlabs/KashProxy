@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    Adding a menu button to map the opened transaction to KashProxy-->
     <item
         android:id="@+id/mapping"
         android:icon="@drawable/chucker_ic_action_transofrm"

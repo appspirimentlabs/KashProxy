@@ -79,13 +79,16 @@ internal class TransactionActivity : BaseChuckerActivity() {
             val encodeUrls = viewModel.encodeUrl.value!!
             TransactionDetailsSharable(transaction, encodeUrls)
         }
+
         R.id.share_curl -> shareTransactionAsText { transaction ->
             TransactionCurlCommandSharable(transaction)
         }
+
         R.id.share_file -> shareTransactionAsFile { transaction ->
             val encodeUrls = viewModel.encodeUrl.value!!
             TransactionDetailsSharable(transaction, encodeUrls)
         }
+
         else -> super.onOptionsItemSelected(item)
     }
 
@@ -130,9 +133,12 @@ internal class TransactionActivity : BaseChuckerActivity() {
         return true
     }
 
-    private fun startMapping(): Boolean
-    {
-        viewModel.getTransactionMapModel().let{
+    /**
+     * NOTE: Function added for handling menu to map
+     * the opened transaction to KashProxy
+     * */
+    private fun startMapping(): Boolean {
+        viewModel.getTransactionMapModel().let {
             KashProxyLib.showMappingActivity(this, it)
         }
 
