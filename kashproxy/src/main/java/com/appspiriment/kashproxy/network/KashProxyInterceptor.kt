@@ -12,13 +12,13 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import java.io.IOException
 
-class KashProxyInterceptor internal constructor(val context: Context) : Interceptor {
+open class KashProxyInterceptor(private val context: Context) : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
 
         return try {
             checkAndMapResponse(chain.request()) ?: run {
-                chain.proceed(chain.request().newBuilder().build())
+                chain.proceed(chain.request())
             }
         } catch (e: Exception) {
             checkAndMapResponse(chain.request()) ?: run { throw e }
@@ -37,12 +37,12 @@ class KashProxyInterceptor internal constructor(val context: Context) : Intercep
     private suspend fun getMappedResponse(request: Request): Response? {
         return KashProxyLib
             .getMappingRepository()
-            .getMappingByUrl(request.url.toString())?.let { mapping ->
+            .getMappingByUrl(request.url().toString())?.let { mapping ->
                 if (mapping.mappingEnabled) {
                     Response.Builder().apply {
                         request(request)
                         protocol(if (request.isHttps) Protocol.HTTP_1_1 else Protocol.HTTP_2)
-                        headers(request.headers)
+                        headers(request.headers())
                         if (mapping.mapToSuccess) {
                             body(ResponseBody.create(null, mapping.successResponse ?: ""))
                             message(mapping.successResponse ?: "")

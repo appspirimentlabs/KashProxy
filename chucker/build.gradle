@@ -15,7 +15,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         consumerProguardFiles 'proguard-rules.pro'
-        resValue("string", "chucker_version", "1.0")
     }
 
     kotlinOptions {
@@ -23,8 +22,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
-        buildConfig = false
+        viewBinding = true
     }
 
     lintOptions {
@@ -46,13 +44,6 @@ android {
     }
 
     resourcePrefix 'chucker_'
-
-    publishing {
-        singleVariant('release') {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
 dependencies {
@@ -77,16 +68,14 @@ dependencies {
 
     implementation "com.google.code.gson:gson:$gsonVersion"
 
-    implementation "org.brotli:dec:$brotliVersion"
-
     api platform("com.squareup.okhttp3:okhttp-bom:$okhttpVersion")
     api "com.squareup.okhttp3:okhttp"
     testImplementation "com.squareup.okhttp3:mockwebserver"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-    testImplementation "junit:junit:$junit4Version"
-    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
+    testImplementation "junit:junit:$vintageJunitVersion"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$vintageJunitVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
     testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation "androidx.test:core:$androidxTestCoreVersion"
@@ -95,5 +84,3 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
 }
 
-//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
-//apply from: rootProject.file('gradle/kotlin-static-analysis.gradle')

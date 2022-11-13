@@ -3,7 +3,7 @@
 
 <br/><br/>
 <p align="center">
-  <img src="assets/ic_launcher_web.png" alt="chucker icon" width="40%"/>
+  <img src="assets/ic_launcher_web.png" alt="chucker icon" width="30%"/>
 </p>
 
 <br/>
@@ -11,7 +11,7 @@
 * [Acknowledgments](#acknowledgments-)
 * [License](#license-)
 
-KashProxy is born from a thought to have the Charles Proxy within the application to make life of developers and testers the testing easier.
+KashProxy is born from a thought to have the Charles Proxy within the application to make life of developers and testers easier.
 
 KashProxy simplifies the process of mocking of **HTTP(S) requests/responses** fired by your Android App. KashProxy works as an **OkHttp Interceptor**, and will provide the required response for the URLs you configured in the KashProxy Mapping List. It provides the required UI for create mapping for each API URL.
 
@@ -19,12 +19,11 @@ KashProxy also integrate the famous Network Monitoring library [Chucker](https:/
 
 Apps using KashProxy will display a **notification** showing a summary of ongoing HTTP response mappings. Tapping on the notification launches the full KashProxy UI. Apps can optionally suppress the notification, and launch the KashProxy UI and [Chucker](https://github.com/ChuckerTeam/chucker) directly from within their own interface.
 
-
 ## Acknowledgments 🌸
 
 ### Maintainers
 
-KashProxy is currently developed and maintained by the [Arun Shankar](https://github.com/arunkarshan). When submitting a new PR, please ping one of:
+KashProxy is currently developed and maintained by [Arun Shankar](https://github.com/arunkarshan). When submitting a new PR, please ping:
 
 - [@arunkarshan](https://github.com/arunkarshan)
 
@@ -32,6 +31,7 @@ KashProxy is currently developed and maintained by the [Arun Shankar](https://gi
 ### Thanks
 
 Big thanks to the Chucker Team ❤️
+
 
 ### Libraries
 
@@ -41,6 +41,7 @@ KashProxy uses the following open source libraries:
 - [OkHttp](https://github.com/square/okhttp) - Copyright Square, Inc.
 - [Gson](https://github.com/google/gson) - Copyright Google Inc.
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - Copyright Google Inc.
+
 
 ## License 📄
 

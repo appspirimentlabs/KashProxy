@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
 
-            <com.appspiriment.kashproxy.utils.customview.KashProxyEditText
+            <TextView
                 android:id="@+id/txt_url"
                 android:layout_width="@dimen/kashproxy_padding_standard_none"
                 android:layout_height="wrap_content"

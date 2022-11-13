@@ -6,7 +6,6 @@ import com.appspiriment.kashproxy.data.db.LocalRoomDataSource
 import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
 import com.appspiriment.kashproxy.data.preference.saveKashProxyMappingEnabled
 import com.appspiriment.kashproxy.data.repository.ResponseMappingRepository
-import com.appspiriment.kashproxy.network.KashProxyInterceptor
 import com.appspiriment.kashproxy.ui.main.KashProxyActivity
 import com.appspiriment.kashproxy.ui.model.MapUrlModel
 
@@ -27,10 +26,8 @@ object KashProxyLib {
         KashProxyActivity.show(context, mapModel)
     }
 
-    fun getKashProxyInterceptor(context: Context): KashProxyInterceptor {
-        initialize(context)
-        return KashProxyInterceptor(context)
-    }
+    fun getLaunchIntent(context: Context) = KashProxyActivity.getLauncherIntent(context)
+
 
     fun enableKashProxyMapping(context: Context, enabled: Boolean) = context.saveKashProxyMappingEnabled(enabled)
     fun isKashProxyMapping(context: Context) = context.isKashProxyMappingEnabled()

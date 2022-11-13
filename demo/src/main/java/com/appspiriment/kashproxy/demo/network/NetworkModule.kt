@@ -7,16 +7,12 @@ import com.appspiriment.kashproxy.demo.BuildConfig
 import com.google.gson.GsonBuilder
 import okhttp3.Cache
 import okhttp3.ConnectionSpec
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
-import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.create
 import java.net.URI
-import java.net.URL
 import java.util.concurrent.TimeUnit
 
 
@@ -56,9 +52,7 @@ class NetworkModule(val context: Context) {
         ).apply {
 
             connectTimeout(100, TimeUnit.SECONDS)
-            KashProxy.getInterceptors(context).forEach {
-                addInterceptor(it)
-            }
+            addInterceptor(KashProxy.getInterceptor(context))
             readTimeout(100, TimeUnit.SECONDS).build()
             cache(cache)
         }
