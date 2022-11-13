@@ -47,7 +47,6 @@
                 android:text="@string/path_title"
                 android:textColor="@color/primary_text_color"
                 android:layout_marginTop="@dimen/kashproxy_padding_standard_xxlarge"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_url"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 

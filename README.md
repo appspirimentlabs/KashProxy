@@ -1,5 +1,7 @@
 # KashProxy
- ![Chucke Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](http://makeapullrequest.com)
+ ![Chucke Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](http://makeapullrequest.com)
+
+_An enhanced fork of [Chucker](https://github.com/ChuckerTeam/chucker)_
 
 <br/><br/>
 <p align="center">
@@ -8,9 +10,8 @@
 
 <br/>
 
-* [Acknowledgments](#acknowledgments-)
-* [License](#license-)
 
+## What is KashProxy?
 KashProxy is born from a thought to have the Charles Proxy within the application to make life of developers and testers easier.
 
 KashProxy simplifies the process of mocking of **HTTP(S) requests/responses** fired by your Android App. KashProxy works as an **OkHttp Interceptor**, and will provide the required response for the URLs you configured in the KashProxy Mapping List. It provides the required UI for create mapping for each API URL.
@@ -18,6 +19,87 @@ KashProxy simplifies the process of mocking of **HTTP(S) requests/responses** fi
 KashProxy also integrate the famous Network Monitoring library [Chucker](https://github.com/ChuckerTeam/chucker) in it, in order to make the mapping of URL more easier and effortless. The app will bring all the features of [Chucker](https://github.com/ChuckerTeam/chucker) too, providing easy extension functions to set up [Chucker](https://github.com/ChuckerTeam/chucker) and KashProxy.
 
 Apps using KashProxy will display a **notification** showing a summary of ongoing HTTP response mappings. Tapping on the notification launches the full KashProxy UI. Apps can optionally suppress the notification, and launch the KashProxy UI and [Chucker](https://github.com/ChuckerTeam/chucker) directly from within their own interface.
+
+
+
+* [Getting Started](#getting-started-)
+* [Acknowledgments](#acknowledgments-)
+* [License](#license-)
+
+
+## Getting Started 👣
+
+
+####Adding Dependencies
+
+KashProxy is distributed through [Maven Central](https://search.maven.org/artifact/com.github.appspiriment.kashproxy/library). To use it you need to add the following **Gradle dependency** to the `build.gradle` files
+
+In the root project `build.gradle` file, add this in the android block:
+
+ ```groovy
+	ext {
+        compose_version = '1.3.0'
+ 	}
+ ```
+
+Now, in your android app module `build.gradle` (NOT the root project `build.gradle` file), add the below dependencies
+
+```groovy
+dependencies {
+  debugImplementation "com.github.appspiriment.kashproxy:library:$"
+  releaseImplementation "com.github.appspiriment.kashproxy:library-no-op:3.5.2"
+}
+```
+
+Please note that you should add both the `library` and the `library-no-op` variant to isolate KashProxy & Chucker from release builds as follows:
+
+
+####Adding Interceptor
+
+In order to record your API transactions, and to map the responses, you need to add the interceptor to the OkHttpClient.
+
+For that, just plug in a new `ChuckerInterceptor` to your OkHttp Client Builder like this:
+
+```kotlin
+val client = OkHttpClient.Builder()
+                .addInterceptor(KashProxy.getInterceptor(context))
+                .build()
+```
+
+[Enable Java 8 support](https://developer.android.com/studio/write/java8-support).
+
+```groovy
+android {
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  // For Kotlin projects add also this line
+  kotlinOptions.jvmTarget = "1.8"
+}
+```
+
+**That's it!** 🎉 Chucker will now record all HTTP interactions made by your OkHttp client, and once you set up your required mappings, KashProxy will map your responses as per your wish!
+
+## Features 🧰
+
+As KashProxy is a port of Chucker itself, it also inherits many of Chucker's features too.
+
+For Chucker features take a peek here : [Chucker Features](https://github.com/ChuckerTeam/chucker#features-)
+## Configure Chucker🎨
+
+You can customize chucker providing an instance of a `ChuckerCollector`. For configuring Chucker, please take a look at Chucker implementation guide: [Chucker Configuration](https://github.com/ChuckerTeam/chucker#configure-)
+
+# Sponsors 💸
+
+KashProxy is maintained by a voluntary team, but we won't be able to do this if there was no Chucker!
+
+Chucker is maintained and improved during nights, weekends and whenever Chucker team has free time. If you use Chucker or KashProxy in your project, please consider sponsoring the ChuckerTeam. This will help them buy a domain for a website they will have soon and also spend some money on charity. Additionally, sponsorship will also help them understand better how valuable Chucker is for people's everyday work.
+
+You can sponsor them by clicking `Sponsor` button on [Chucker](https://github.com/ChuckerTeam/) page.
+
+
 
 ## Acknowledgments 🌸
 
@@ -30,7 +112,7 @@ KashProxy is currently developed and maintained by [Arun Shankar](https://github
 
 ### Thanks
 
-Big thanks to the Chucker Team ❤️
+Big thanks to the Chucker Team ❤️ for the code and the  ReadMe 😍
 
 
 ### Libraries
@@ -52,7 +134,7 @@ KashProxy uses the following open source libraries:
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+    http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,

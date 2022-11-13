@@ -52,6 +52,10 @@ internal class TransactionViewModel(transactionId: Long) : ViewModel() {
         mutableEncodeUrl.value = encode
     }
 
+    /**
+     * NOTE: Function added for handling menu to map
+     * the opened transaction to KashProxy
+     * */
     fun getTransactionMapModel() : MapUrlModel? {
         return transaction.value?.let { transaction ->
             MapUrlModel(
