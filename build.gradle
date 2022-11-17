@@ -1,3 +1,4 @@
+apply plugin: 'maven-publish'
 
 buildscript {
     ext {
@@ -95,6 +96,7 @@ apply from: "${rootDir}/scripts/library-publish-root.gradle"
 allprojects {
     version = "$libraryVersionName"
     group = "io.github.appspirimentlabs"
+
 
     tasks.withType(Test) {
         testLogging {
