@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    compileOptions {
+        kotlinOptions.freeCompilerArgs += [
+            '-module-name', "com.github.ChuckerTeam.Chucker.library-no-op",
+            "-Xexplicit-api=strict"
+        ]
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+    }
+
+    lintOptions {
+        warningsAsErrors true
+        abortOnError true
+        // We don't want to impose RTL on consuming applications.
+        disable 'RtlEnabled'
+        // Don't fail build if some dependencies outdated
+        disable 'GradleDependency'
+    }
+}
+
+dependencies {
+    api "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+}
+
+
+apply from: "${rootProject.projectDir}/scripts/library-publish-module.gradle"
+
+afterEvaluate {
+    publishing {
+        publications {
+            releaseLibrary(MavenPublication) {
+                artifactId PUBLISH_ARTIFACT_CHUCKER_NO_OP_ID
+            }
+        }
+    }
+}

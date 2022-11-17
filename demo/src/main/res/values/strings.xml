@@ -11,4 +11,5 @@
     <string name="path_title">Path:</string>
     <string name="response_body">Response Body:</string>
     <string name="url_error_prompt">Please enter a valid url</string>
+    <string name="host_hint">Please enter the URL here...</string>
 </resources>

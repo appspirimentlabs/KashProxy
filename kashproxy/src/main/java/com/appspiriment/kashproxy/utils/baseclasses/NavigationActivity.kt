@@ -2,7 +2,6 @@ package com.appspiriment.kashproxy.utils.baseclasses
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.appspiriment.kashproxy.R
 
@@ -21,7 +20,7 @@ internal open class NavigationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_navigation)
+        setContentView(R.layout.kashproxy_activity_navigation)
 
         setNavGraph()
     }

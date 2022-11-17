@@ -1,8 +1,6 @@
 package com.appspiriment.kashproxy.ui.model
 
-import android.net.Uri
 import com.google.gson.Gson
-import java.net.URL
 
 
 /*********************************************************
@@ -16,6 +14,7 @@ import java.net.URL
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
 internal data class ResponseMappingModel(
+    val mappingId: Int? = null,
     val url: String,
     val protocol: String,
     val apiHost: String,

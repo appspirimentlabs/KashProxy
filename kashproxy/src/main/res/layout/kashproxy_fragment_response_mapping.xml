@@ -270,7 +270,7 @@
                     android:paddingVertical="@dimen/kashproxy_padding_standard_medium"
                     android:text="@string/kashproxy_delete"
                     android:textColor="@color/kashproxy_text_error"
-                    app:isVisible="@{viewModel.apiUrl != null}"
+                    app:isVisible="@{viewModel.mappingId != null}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

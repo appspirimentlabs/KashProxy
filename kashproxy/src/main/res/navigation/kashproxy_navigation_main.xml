@@ -24,8 +24,8 @@
             app:popUpTo="@id/kashMapListFragment"
             app:popUpToInclusive="false" >
             <argument
-                android:name="mappingUrl"
-                app:argType="string"/>
+                android:name="mappingId"
+                app:argType="integer"/>
         </action>
 
     </fragment>
@@ -54,10 +54,9 @@
             app:popUpTo="@id/nav_graph_main"
             app:popUpToInclusive="true"/>
         <argument
-            android:name="mappingUrl"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="null"/>
+            android:name="mappingId"
+            app:argType="integer"
+            android:defaultValue="-1"/>
          <argument
             android:name="map_model"
             app:argType="com.appspiriment.kashproxy.ui.model.MapUrlModel"
@@ -79,8 +78,4 @@
 
     </fragment>
 
-    <dialog
-        android:id="@+id/kashResponseCodeRewriteSheet"
-        android:name="com.appspiriment.kashproxy.ui.rewritemappingsheet.ResponseStatusRewriteSheet"
-        android:label="Response Code Rewrite" />
 </navigation>

@@ -28,7 +28,7 @@ object KashProxy {
         maxContentLength: Long = 250000L,
         headersToRedact: Iterable<String> = emptyList(),
         alwaysReadResponseBody: Boolean = false
-    ): ChuckerInterceptor {
+    ): Interceptor {
 
         // Create the Collector
         val chuckerCollector = ChuckerCollector(

@@ -88,4 +88,27 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "junit:junit:$vintageJunitVersion"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$vintageJunitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "androidx.test:core:$androidxTestCoreVersion"
+    testImplementation "androidx.arch.core:core-testing:$androidXCoreVersion"
+
+}
+
+
+
+apply from: "${rootProject.projectDir}/scripts/library-publish-module.gradle"
+
+afterEvaluate {
+    publishing {
+        publications {
+            releaseLibrary(MavenPublication) {
+                artifactId PUBLISH_ARTIFACT_KASH_CORE_ID
+            }
+        }
+    }
 }

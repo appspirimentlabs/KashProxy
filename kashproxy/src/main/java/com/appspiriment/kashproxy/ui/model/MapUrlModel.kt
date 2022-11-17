@@ -1,6 +1,7 @@
 package com.appspiriment.kashproxy.ui.model
 
 import android.os.Parcelable
+import com.appspiriment.kashproxy.utils.extentions.formatToJson
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -9,4 +10,7 @@ class MapUrlModel(
    val method: String?,
    val response: String?,
    val isSsl: Boolean
-) : Parcelable
+) : Parcelable{
+
+   fun getFormattedResponse() = response?.formatToJson()
+}

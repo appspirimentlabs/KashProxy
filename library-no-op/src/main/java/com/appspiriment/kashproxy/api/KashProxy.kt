@@ -2,9 +2,9 @@ package com.appspiriment.kashproxy.api
 
 import android.content.Context
 import android.content.Intent
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import com.chuckerteam.chucker.api.RetentionManager.*
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.Interceptor
 
 
@@ -27,7 +27,7 @@ object KashProxy {
         maxContentLength: Long = 250000L,
         headersToRedact: Iterable<String> = emptyList(),
         alwaysReadResponseBody: Boolean = false
-    ): ChuckerInterceptor = Builder(context).build()
+    ): Interceptor = Builder(context).build()
 
     /**
      * Assembles a new [KashProxyInterceptor].

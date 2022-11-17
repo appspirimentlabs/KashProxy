@@ -32,6 +32,7 @@ android {
         disable 'RtlEnabled'
         // Don't fail build if some dependencies outdated
         disable 'GradleDependency'
+        baseline file("lint-baseline.xml")
     }
 
     testOptions {
@@ -40,15 +41,15 @@ android {
             all {
                 useJUnitPlatform()
             }
+
         }
     }
-
     resourcePrefix 'chucker_'
 }
 
 dependencies {
 
-    api project(":kashproxy")
+    api "io.github.appspirimentlabs:$PUBLISH_ARTIFACT_KASH_CORE_ID:$libraryVersionName"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
@@ -84,3 +85,26 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
 }
 
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        //this is for speed up build
+        task.enabled = false
+    }
+    if(task.name.contains("Test"))
+    {
+        //Disabling tests temporarily, since this is already successful release from Chucker
+        task.enabled = false
+    }
+}
+
+apply from: "${rootProject.projectDir}/scripts/library-publish-module.gradle"
+
+afterEvaluate {
+    publishing {
+        publications {
+            releaseLibrary(MavenPublication) {
+                artifactId PUBLISH_ARTIFACT_CHUCKER_ID
+            }
+        }
+    }
+}

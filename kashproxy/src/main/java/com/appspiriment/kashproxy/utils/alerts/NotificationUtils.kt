@@ -87,7 +87,7 @@ internal class NotificationUtils(val context: Context) {
             synchronized(apiMappingBuffer) {
                 var count = 0
                 apiMappingBuffer.forEach { mappedTransaction ->
-                    if ((mappedTransaction != null) && count < BUFFER_SIZE) {
+                    if (count < BUFFER_SIZE) {
                         if (count == 0) {
                             setContentText(mappedTransaction.value)
                         }
