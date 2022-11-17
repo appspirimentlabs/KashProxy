@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.map
 import com.appspiriment.kashproxy.ui.model.MapUrlModel
-import com.appspiriment.kashproxy.utils.extentions.formatToJson
 import com.chuckerteam.chucker.internal.data.entity.HttpTransaction
 import com.chuckerteam.chucker.internal.data.repository.RepositoryProvider
 import com.chuckerteam.chucker.internal.support.combineLatest
@@ -61,7 +60,7 @@ internal class TransactionViewModel(transactionId: Long) : ViewModel() {
             MapUrlModel(
                 url = transaction.getFormattedUrl(encodeUrl.value?:false),
                 method = transaction.method,
-                response = transaction.responseBody.formatToJson(),
+                response = transaction.responseBody,
                 isSsl = transaction.isSsl
             )
         }

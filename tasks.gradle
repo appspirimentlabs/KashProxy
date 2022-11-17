@@ -1,0 +1,30 @@
+
+task assemblePublishWithCleanBuildToLocal(type: GradleBuild) {
+    tasks = [
+            'kashproxy:clean', 'kashproxy:build', 'kashproxy:publishReleaseLibraryPublicationToMavenLocal',
+            'chucker:clean', 'chucker:build', 'chucker:publishReleaseLibraryPublicationToMavenLocal',
+            'chucker-no-op:clean', 'chucker-no-op:build', 'chucker-no-op:publishReleaseLibraryPublicationToMavenLocal',
+            'library:clean', 'library:build', 'library:publishReleaseLibraryPublicationToMavenLocal',
+            'library-no-op:clean', 'library-no-op:build', 'library-no-op:publishReleaseLibraryPublicationToMavenLocal',
+    ]
+}
+
+task assemblePublishToLocal(type: GradleBuild) {
+    tasks = [
+            'kashproxy:publishReleaseLibraryPublicationToMavenLocal',
+            'chucker:publishReleaseLibraryPublicationToMavenLocal',
+            'chucker-no-op:publishReleaseLibraryPublicationToMavenLocal',
+            'library:publishReleaseLibraryPublicationToMavenLocal',
+            'library-no-op:publishReleaseLibraryPublicationToMavenLocal',
+    ]
+}
+
+task assemblePublishWithCleanBuildToMaven(type: GradleBuild) {
+    tasks = [
+            'kashproxy:clean', 'kashproxy:build', 'kashproxy:publishReleaseLibraryPublicationToSonatypeRepository',
+            'chucker:clean', 'chucker:build', 'chucker:publishReleaseLibraryPublicationToSonatypeRepository',
+            'chucker-no-op:clean', 'chucker-no-op:build', 'chucker-no-op:publishReleaseLibraryPublicationToSonatypeRepository',
+            'library:clean', 'library:build', 'library:publishReleaseLibraryPublicationToSonatypeRepository',
+            'library-no-op:clean', 'library-no-op:build', 'library-no-op:publishReleaseLibraryPublicationToSonatypeRepository',
+    ]
+}

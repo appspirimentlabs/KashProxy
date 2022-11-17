@@ -8,7 +8,7 @@ import com.appspiriment.kashproxy.ui.model.MapUrlModel
 import com.appspiriment.kashproxy.utils.baseclasses.NavigationActivity
 
 internal class KashProxyActivity : NavigationActivity() {
-    override var navGraphId: Int = R.navigation.navigation_proxy
+    override var navGraphId: Int = R.navigation.kashproxy_navigation_main
 
     override fun setNavGraph() {
         navGraphId.takeIf { it != -1 }?.let { navId ->

@@ -50,8 +50,8 @@ android {
 
 dependencies {
 
-    implementation project(":library")
-//    implementation project(":library-no-op")
+    implementation "io.github.appspirimentlabs:kashproxy-library:$libraryVersionName"
+//    implementation "io.github.appspirimentlabs:kashproxy-library-no-op:$libraryVersionName"
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.activity:activity-compose:1.6.1'

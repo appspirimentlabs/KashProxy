@@ -25,7 +25,7 @@ internal open class BaseListAdapter<ListItemType : Any, ViewBindingType : ViewDa
     private val bindingItemId : Int,
     private val positionBindingId : Int? = null,
     private val bindingMap :HashMap<Int, Any> = HashMap(),
-    areItemsSameLambda : (oldItem: ListItemType, newItem: ListItemType) -> Boolean = { oldItem, newItem -> oldItem?.equals(newItem)?:false },
+    areItemsSameLambda : (oldItem: ListItemType, newItem: ListItemType) -> Boolean = { oldItem, newItem -> oldItem == newItem },
     areContentsTheSame : (oldItem: ListItemType, newItem: ListItemType) -> Boolean = { _, _ -> false },
     diffCallback : DiffUtil.ItemCallback<ListItemType> = object :
         DiffUtil.ItemCallback<ListItemType>() {
@@ -36,7 +36,7 @@ internal open class BaseListAdapter<ListItemType : Any, ViewBindingType : ViewDa
             areContentsTheSame(oldItem, newItem)
     }
 ) : ListAdapter<ListItemType, BaseListAdapter<ListItemType, ViewBindingType>.BaseViewHolder>(
-    AsyncDifferConfig.Builder<ListItemType>(diffCallback)
+    AsyncDifferConfig.Builder(diffCallback)
         .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
         .build()
 ) {

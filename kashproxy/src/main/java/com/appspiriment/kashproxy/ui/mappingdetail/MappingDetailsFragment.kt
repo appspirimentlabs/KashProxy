@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.appspiriment.kashproxy.databinding.FragmentResponseMappingBinding
+import com.appspiriment.kashproxy.databinding.KashproxyFragmentResponseMappingBinding
+import com.appspiriment.kashproxy.ui.di.createWithFactory
 import com.appspiriment.kashproxy.ui.model.MappingItem
 import com.appspiriment.kashproxy.ui.responseeditor.ResponseEditingViewModel
 import com.appspiriment.kashproxy.utils.alerts.showMessageEvent
 import com.appspiriment.kashproxy.utils.extentions.observeData
 import com.appspiriment.kashproxy.utils.extentions.openFragmentForResult
 import com.appspiriment.kashproxy.utils.navigation.handleNavigation
-import com.appspiriment.kashproxy.ui.di.createWithFactory
 
 
 internal class MappingDetailsFragment : Fragment() {
@@ -28,20 +28,20 @@ internal class MappingDetailsFragment : Fragment() {
             createWithFactory {
                 MappingDetailsViewModel(
                     application = requireActivity().application,
-                    url = args.mappingUrl,
+                    mappingIdArg = args.mappingId.takeUnless { it < 0 },
                     mapUrlModel = args.mapModel
                 )
             }
         ).get(MappingDetailsViewModel::class.java)
     }
 
-    private var binding: FragmentResponseMappingBinding? = null
+    private var binding: KashproxyFragmentResponseMappingBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentResponseMappingBinding.inflate(inflater, container, false).apply {
+    ) = KashproxyFragmentResponseMappingBinding.inflate(inflater, container, false).apply {
         viewModel = this@MappingDetailsFragment.viewModel
         lifecycleOwner = this@MappingDetailsFragment
     }.also {
@@ -84,7 +84,7 @@ internal class MappingDetailsFragment : Fragment() {
 
             }
 
-            setPasteListener { view -> viewModel.formatUrl() }
+            setPasteListener { viewModel.formatUrl() }
         }
         (activity as AppCompatActivity?)?.supportActionBar?.apply {
             setHomeButtonEnabled(true)

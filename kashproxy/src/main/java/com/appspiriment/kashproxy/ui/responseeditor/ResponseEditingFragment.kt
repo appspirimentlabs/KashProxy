@@ -5,24 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.appspiriment.kashproxy.databinding.FragmentMapResponseEditorBinding
+import com.appspiriment.kashproxy.databinding.KashproxyFragmentMapResponseEditorBinding
 import com.appspiriment.kashproxy.ui.di.createWithFactory
-import com.appspiriment.kashproxy.ui.mappingdetail.MappingDetailsViewModel
-import com.appspiriment.kashproxy.utils.customview.KashProxyEditText
 import com.appspiriment.kashproxy.utils.extentions.observeData
 
 
 internal class ResponseEditingFragment : Fragment() {
 
     private val args by navArgs<ResponseEditingFragmentArgs>()
-    private var binding: FragmentMapResponseEditorBinding? = null
+    private var binding: KashproxyFragmentMapResponseEditorBinding? = null
 
 
     private val viewModel: ResponseEditingViewModel by lazy {
@@ -39,7 +35,7 @@ internal class ResponseEditingFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentMapResponseEditorBinding.inflate(inflater, container, false).apply {
+    ) = KashproxyFragmentMapResponseEditorBinding.inflate(inflater, container, false).apply {
         viewModel = this@ResponseEditingFragment.viewModel
         lifecycleOwner = this@ResponseEditingFragment
     }.also {

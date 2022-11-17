@@ -2,6 +2,9 @@ apply plugin: 'maven-publish'
 
 buildscript {
     ext {
+
+        libraryVersionName = '1.0.1'
+
         compose_version = '1.3.0'
         minSdkVersion = 24
         targetSdkVersion = 33
@@ -46,8 +49,28 @@ buildscript {
         // Publishing
         nexusStagingPlugin = '0.30.0'
 
-        libraryVersionName = '1.0.0'
+        PUBLISH_GROUP_ID = 'io.github.appspirimentlabs'
+        PUBLISH_VERSION = "$libraryVersionName"
+        PUBLISH_ARTIFACT_LIBRARY_ID = 'kashproxy-library'
+        PUBLISH_ARTIFACT_NO_OP_ID = 'kashproxy-library-no-op'
+        PUBLISH_ARTIFACT_CHUCKER_ID = 'kashproxy-chucker'
+        PUBLISH_ARTIFACT_CHUCKER_NO_OP_ID = 'kashproxy-chucker-no-op'
+        PUBLISH_ARTIFACT_KASH_CORE_ID = 'kashproxy-core'
+        PUBLISH_DESCRIPTION = 'KashProxy for proxying API responses'
+        PUBLISH_URL = 'https://github.com/appspirimentlabs/KashProxy/'
+        PUBLISH_LICENSE_NAME = 'Apache License 2.0'
+        PUBLISH_LICENSE_URL =
+                'https://github.com/appspirimentlabs/KashProxy/blob/main/LICENSE.txt'
+        PUBLISH_DEVELOPER_ID = '@appspirimentlabs'
+        PUBLISH_DEVELOPER_NAME = 'Appspiriment Labs'
+        PUBLISH_DEVELOPER_EMAIL = 'appspiriment@gmail.com'
+        PUBLISH_SCM_CONNECTION =
+                'scm:git:github.com/appspirimentlabs/KashProxy.git'
+        PUBLISH_SCM_DEVELOPER_CONNECTION =
+                'scm:git:ssh://github.com/appspirimentlabs/KashProxy.git'
+        PUBLISH_SCM_URL = 'https://github.com/appspirimentlabs/KashProxy/tree/master'
     }
+
     repositories {
         google()
         gradlePluginPortal()
@@ -61,12 +84,19 @@ buildscript {
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktLintGradleVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$safeArgsVersion"
+        classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
     }
 }
 
+apply plugin: 'java'
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+apply from: "${rootDir}/scripts/library-publish-root.gradle"
+
+
 allprojects {
     version = "$libraryVersionName"
-    group = "com.appspiriment"
+    group = "io.github.appspirimentlabs"
+
 
     tasks.withType(Test) {
         testLogging {
@@ -75,3 +105,10 @@ allprojects {
     }
 }
 
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+apply from: "tasks.gradle"

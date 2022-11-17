@@ -17,11 +17,12 @@ import kotlinx.coroutines.launch
 import java.net.URI
 
 internal class MappingDetailsViewModel(
-    application: Application, private val url: String?, private val mapUrlModel: MapUrlModel?
+    application: Application, private val mappingIdArg: Int?, private val mapUrlModel: MapUrlModel?
 ) : BaseAndroidViewModel(application) {
 
     val apiUrlError = MutableLiveData<Int?>()
 
+    val mappingId = MutableLiveData<Int>()
     val mappingEnabled = MutableLiveData(true)
 
     val protocol = MutableLiveData<String>()
@@ -38,7 +39,7 @@ internal class MappingDetailsViewModel(
     val errorResponse = MutableLiveData("")
 
     val selectedResponseMapping = mapToSuccessResponse.map {
-        if(it) R.id.rd_success_type else R.id.rd_error_type
+        if (it) R.id.rd_success_type else R.id.rd_error_type
     }
     val successResponseVisible = MutableLiveData(false)
     val successResponseAction = successResponseVisible.map {
@@ -56,27 +57,24 @@ internal class MappingDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            url?.let { mappingUrl ->
-                val existingMapping = KashProxyLib.getMappingRepository().getMappingByUrl(mappingUrl)
-                when {
-                    existingMapping == null && mapUrlModel == null -> handleInvalidMapping(
-                        mappingUrl
-                    )
+            val existingMapping =
+                mappingIdArg?.let { KashProxyLib.getMappingRepository().getMappingById(it) }
+            when {
+                existingMapping == null && mapUrlModel == null -> handleInvalidMapping(mappingIdArg)
 
-                    mapUrlModel == null && existingMapping != null -> populateFromMapping(
-                        existingMapping
-                    )
+                mapUrlModel == null && existingMapping != null -> populateFromMapping(
+                    existingMapping
+                )
 
-                    existingMapping == null && mapUrlModel != null -> createNewMappingResponse(
-                        mapUrlModel
-                    )
+                existingMapping == null && mapUrlModel != null -> createNewMappingResponse(
+                    mapUrlModel
+                )
 
-                    existingMapping != null && mapUrlModel != null -> handleExistingMapping(
-                        existingMapping, mapUrlModel
-                    )
-                }
+                existingMapping != null && mapUrlModel != null -> handleExistingMapping(
+                    existingMapping,
+                    mapUrlModel
+                )
             }
-            formatUrl()
         }
     }
 
@@ -97,6 +95,7 @@ internal class MappingDetailsViewModel(
     }
 
     private fun populateFromMapping(mapping: ResponseMappingModel) {
+        mappingId.value = mapping.mappingId ?: 0
         apiUrl.value = mapping.url
         protocol.value = mapping.protocol
         apiHost.value = mapping.apiHost
@@ -108,28 +107,29 @@ internal class MappingDetailsViewModel(
         successResponse.value = mapping.successResponse
         errorResponse.value = mapping.errorResponse
         mappingEnabled.value = mapping.mappingEnabled
+        formatUrl()
     }
 
 
     private fun createNewMappingResponse(mapUrlModel: MapUrlModel) {
         apiUrl.value = mapUrlModel.url
-        successResponse.value = mapUrlModel.response
+        successResponse.value = mapUrlModel.getFormattedResponse()
         errorResponse.value =
             getApplication<Application>().getString(R.string.kashproxy_proxy_error_response_template)
                 .formatToJson()
+        formatUrl()
     }
 
-    private fun handleInvalidMapping(url: String) {
+    private fun handleInvalidMapping(mappingId: Int?) {
         showAlertDialog(
             title = R.string.kashproxy_invalid_mapping,
             message = R.string.kashproxy_invalid_mapping_msg,
-            positiveButtonTxt = R.string.kashproxy_create_new,
+            positiveButtonTxt = R.string.kashproxy_delete,
             negativeButtonTxt = R.string.kashproxy_cancel,
             positiveClickListen = {
-                apiUrl.value = url
-                errorResponse.value =
-                    getApplication<Application>().getString(R.string.kashproxy_proxy_error_response_template)
-                        .formatToJson()
+                viewModelScope.launch {
+                    mappingId?.let{KashProxyLib.getMappingRepository().deleteProxyMapping(it)}
+                }
             },
             negativeClickListen = { navigateBack() }
         )
@@ -189,7 +189,7 @@ internal class MappingDetailsViewModel(
     }
 
     fun deleteMapping() {
-        apiUrl.value?.let {
+        mappingId.value?.let {
             showAlertDialog(title = R.string.kashproxy_confirm,
                 message = R.string.kashproxy_confirm_delete_mapping,
                 positiveButtonTxt = R.string.kashproxy_delete,
@@ -204,7 +204,6 @@ internal class MappingDetailsViewModel(
     }
 
     fun formatUrl() {
-
         try {
             apiUrl.value?.let {
                 URI.create(it).run {
@@ -215,14 +214,13 @@ internal class MappingDetailsViewModel(
 
                     apiHost.value = authority ?: host
                     apiPath.value = path
-                    apiQueries.value = query
+                    apiQueries.value = query?.split("&")?.sorted()?.joinToString(separator = "&")
                     apiUrl.value = this.toURL().toString()
                 }
             }
             apiUrlError.value = null
         } catch (e: Exception) {
             apiUrlError.value = R.string.kashproxy_invalid_url
-            showToast(R.string.kashproxy_invalid_url)
             e.printStackTrace()
         }
     }
@@ -239,7 +237,9 @@ internal class MappingDetailsViewModel(
         apiUrl.value?.let {
             if (isSaving) return else isSaving = true
             viewModelScope.launch {
-                ResponseMappingModel(url = it,
+                ResponseMappingModel(
+                    mappingId = mappingId.value,
+                    url = it,
                     protocol = protocol.value ?: "https",
                     apiHost = apiHost.value ?: "",
                     path = apiPath.value,

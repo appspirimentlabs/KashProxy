@@ -1,6 +1,7 @@
 package com.appspiriment.kashproxy.data.db
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
@@ -14,9 +15,11 @@ import androidx.room.PrimaryKey
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-@Entity(tableName = "responseMapping")
+@Entity(tableName = "responseMapping", indices = [Index(value = ["apiUrl"],
+    unique = true)])
 data class ResponseMappingEntity(
-    @PrimaryKey val apiUrl: String,
+    @PrimaryKey(autoGenerate = true) val mappingId: Int? = 0,
+    val apiUrl: String,
     val protocol: String,
     val apiHost: String,
     val path: String?,

@@ -1,6 +1,7 @@
 package com.appspiriment.kashproxy.network
 
 import android.content.Context
+import android.util.Log
 import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
 import com.appspiriment.kashproxy.di.KashProxyLib
 import com.appspiriment.kashproxy.utils.NotificationUtils
@@ -35,6 +36,11 @@ open class KashProxyInterceptor(private val context: Context) : Interceptor {
     }
 
     private suspend fun getMappedResponse(request: Request): Response? {
+        val s = (KashProxyLib.getMappingRepository().getMappingByUrl(request.url().toString()))?.mappingId.toString()?:"null"
+        s.let{
+        Log.e("Mappers", s)
+        }
+
         return KashProxyLib
             .getMappingRepository()
             .getMappingByUrl(request.url().toString())?.let { mapping ->

@@ -44,22 +44,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
 
-    api project(":chucker")
+    api "io.github.appspirimentlabs:$PUBLISH_ARTIFACT_CHUCKER_ID:$libraryVersionName"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }
 
+apply from: "${rootProject.projectDir}/scripts/library-publish-module.gradle"
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = 'com.github.appspirimentlabs'
-            artifactId = 'kashproxy-library'
-            version = "$libraryVersionName"
-
-            afterEvaluate {
-                from components.release
+afterEvaluate {
+    publishing {
+        publications {
+            releaseLibrary(MavenPublication) {
+                artifactId PUBLISH_ARTIFACT_LIBRARY_ID
             }
         }
     }

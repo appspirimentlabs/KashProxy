@@ -1,11 +1,11 @@
 # KashProxy
- ![Chucke Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](http://makeapullrequest.com)
+ ![KashProxy Version](https://img.shields.io/maven-central/v/Id:io.github.appspirimentlabs/kashproxy-library?color=blue)  ![Chucker Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](http://makeapullrequest.com)
 
 _An enhanced fork of [Chucker](https://github.com/ChuckerTeam/chucker)_
 
 <br/><br/>
 <p align="center">
-  <img src="assets/ic_launcher_web.png" alt="chucker icon" width="30%"/>
+  <img src="assets/ic_launcher_web.png" alt="chucker icon" width="25%"/>
 </p>
 
 <br/>
@@ -38,7 +38,7 @@ In the root project `build.gradle` file, add this in the android block:
 
  ```groovy
 	ext {
-        compose_version = '1.3.0'
+        kashProxyVersion = '1.0.1'
  	}
  ```
 
@@ -46,8 +46,8 @@ Now, in your android app module `build.gradle` (NOT the root project `build.grad
 
 ```groovy
 dependencies {
-  debugImplementation "com.github.appspiriment.kashproxy:library:$"
-  releaseImplementation "com.github.appspiriment.kashproxy:library-no-op:3.5.2"
+  debugImplementation "io.github.appspirimentlabs:kashproxy-library:$kashProxyVersion"
+  releaseImplementation "io.github.appspirimentlabs:kashproxy-library-no-op:$kashProxyVersion"
 }
 ```
 
@@ -80,6 +80,10 @@ android {
 }
 ```
 
+### Configure Chucker🎨
+
+You can customize chucker providing an instance of a `ChuckerCollector`. For configuring Chucker, please take a look at Chucker implementation guide: [Chucker Configuration](https://github.com/ChuckerTeam/chucker#configure-)
+
 **That's it!** 🎉 Chucker will now record all HTTP interactions made by your OkHttp client, and once you set up your required mappings, KashProxy will map your responses as per your wish!
 
 ## Features 🧰
@@ -87,35 +91,46 @@ android {
 As KashProxy is a port of Chucker itself, it also inherits many of Chucker's features too.
 
 For Chucker features take a peek here : [Chucker Features](https://github.com/ChuckerTeam/chucker#features-)
-## Configure Chucker🎨
 
-You can customize chucker providing an instance of a `ChuckerCollector`. For configuring Chucker, please take a look at Chucker implementation guide: [Chucker Configuration](https://github.com/ChuckerTeam/chucker#configure-)
 
-# Sponsors 💸
 
-KashProxy is maintained by a voluntary team, but we won't be able to do this if there was no Chucker!
+## Creating Mappings
 
-Chucker is maintained and improved during nights, weekends and whenever Chucker team has free time. If you use Chucker or KashProxy in your project, please consider sponsoring the ChuckerTeam. This will help them buy a domain for a website they will have soon and also spend some money on charity. Additionally, sponsorship will also help them understand better how valuable Chucker is for people's everyday work.
 
-You can sponsor them by clicking `Sponsor` button on [Chucker](https://github.com/ChuckerTeam/) page.
+#### Mapping from Chucker Log
 
+You can create a response mapping directly from the Chucker log, which is the most recommended way to mock the response of a particular API. This will cover most of the common usecases, as the APIs will mostly be pre-defined.
+
+For creating a map, just open the required api and click on the Transform menu in the actionbar. this will open the Mapping Editor, in which you can edit the required fields, including the success and error response.
+
+<p align="center">
+  <img src="assets/ic_mapping_sample_1.png" alt="chucker icon" width="50%"/>
+</p>
+
+
+The library will use the matching-from-start method, which means, if you create a map for `https://google.com`, it will also match `https://google.com/search?query=xys`.
+
+
+## Limitations
+
+KashProxy currently supports exact URL matching only. This means, you have to give the exact url, with all the query parameters in correct order too. And, unfortunately there is not wildcard support. We know these are serious limitations, but as we are working hard to provide more sophisticated matching algorithm just like Charles Proxy. And we are working to include the Break-Point mechanism too..
 
 
 ## Acknowledgments 🌸
 
-### Maintainers
+#### Maintainers
 
 KashProxy is currently developed and maintained by [Arun Shankar](https://github.com/arunkarshan). When submitting a new PR, please ping:
 
 - [@arunkarshan](https://github.com/arunkarshan)
 
 
-### Thanks
+#### Thanks
 
 Big thanks to the Chucker Team ❤️ for the code and the  ReadMe 😍
 
 
-### Libraries
+#### Libraries
 
 KashProxy uses the following open source libraries:
 
@@ -123,6 +138,16 @@ KashProxy uses the following open source libraries:
 - [OkHttp](https://github.com/square/okhttp) - Copyright Square, Inc.
 - [Gson](https://github.com/google/gson) - Copyright Google Inc.
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - Copyright Google Inc.
+
+
+
+## Sponsors 💸
+
+KashProxy is maintained by a voluntary team, but we won't be able to do this if there was no Chucker!
+
+Chucker is maintained and improved during nights, weekends and whenever Chucker team has free time. If you use Chucker or KashProxy in your project, please consider sponsoring the ChuckerTeam. This will help them buy a domain for a website they will have soon and also spend some money on charity. Additionally, sponsorship will also help them understand better how valuable Chucker is for people's everyday work.
+
+You can sponsor them by clicking `Sponsor` button on [Chucker](https://github.com/ChuckerTeam/) page.
 
 
 ## License 📄

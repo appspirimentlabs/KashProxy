@@ -7,13 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.appspiriment.kashproxy.data.preference.isKashProxyMappingEnabled
 import com.appspiriment.kashproxy.di.KashProxyLib
 import com.appspiriment.kashproxy.ui.model.ResponseMappingModel
-import com.appspiriment.kashproxy.utils.baseclasses.BaseAndroidViewModel
 import com.appspiriment.kashproxy.utils.events.SingleLiveData
 import kotlinx.coroutines.launch
 
 internal class ResponseMapListViewModel(application: Application): AndroidViewModel(application) {
 
-    val openMappingDetails = SingleLiveData<String?>()
+    val openMappingDetails = SingleLiveData<Int?>()
     val mappingList = MutableLiveData<List<ResponseMappingModel>>(emptyList())
     val mappingEnabled = MutableLiveData<Boolean>()
 
@@ -32,8 +31,8 @@ internal class ResponseMapListViewModel(application: Application): AndroidViewMo
     }
 
 
-    fun openMappingDetails(url:String){
-        openMappingDetails.value = url
+    fun openMappingDetails(mappingId:Int){
+        openMappingDetails.value = mappingId
     }
 
     fun changeResponseType(model: ResponseMappingModel, toSuccess:Boolean){

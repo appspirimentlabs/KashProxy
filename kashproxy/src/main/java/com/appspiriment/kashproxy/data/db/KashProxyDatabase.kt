@@ -2,8 +2,8 @@ package com.equinox.prologix.common.datalocal.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.appspiriment.kashproxy.data.db.ResponseMappingEntity
 import com.appspiriment.kashproxy.data.db.ResponseMappingDao
+import com.appspiriment.kashproxy.data.db.ResponseMappingEntity
 
 
 /*********************************************************
@@ -16,7 +16,7 @@ import com.appspiriment.kashproxy.data.db.ResponseMappingDao
  * Rework Details:
  * 1) {Author} :  {Date} : {Details}
  *********************************************************/
-@Database(entities = [ResponseMappingEntity::class],     version = 1)
+@Database(entities = [ResponseMappingEntity::class],     version = 2)
 abstract class KashProxyDatabase internal constructor () : RoomDatabase() {
     abstract fun mappingDao() : ResponseMappingDao
 }
