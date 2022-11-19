@@ -1,5 +1,5 @@
 # KashProxy
- ![KashProxy Version](https://img.shields.io/maven-central/v/io.github.appspirimentlabs/kashproxy-library?label=KashProxy))  ![Chucker Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](http://makeapullrequest.com)
+ ![KashProxy Version](https://img.shields.io/maven-central/v/io.github.appspirimentlabs/kashproxy-library?label=KashProxy)  ![Chucker Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](http://makeapullrequest.com)
 
 _An enhanced fork of [Chucker](https://github.com/ChuckerTeam/chucker)_
 
