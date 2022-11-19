@@ -1,5 +1,5 @@
 # KashProxy
- ![KashProxy Version](https://img.shields.io/maven-central/v/Id:io.github.appspirimentlabs/kashproxy-library?color=blue)  ![Chucker Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](http://makeapullrequest.com)
+ ![KashProxy Version](https://img.shields.io/maven-central/v/io.github.appspirimentlabs/kashproxy-library?label=KashProxy)  ![Chucker Version](https://img.shields.io/maven-central/v/com.github.chuckerteam.chucker/library?label=Chucker&color=black)  ![License](https://img.shields.io/github/license/arunkarshan/KashProxy.svg?color=orange)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](http://makeapullrequest.com)
 
 _An enhanced fork of [Chucker](https://github.com/ChuckerTeam/chucker)_
 
@@ -104,7 +104,7 @@ You can create a response mapping directly from the Chucker log, which is the mo
 For creating a map, just open the required api and click on the Transform menu in the actionbar. this will open the Mapping Editor, in which you can edit the required fields, including the success and error response.
 
 <p align="center">
-  <img src="assets/ic_mapping_sample_1.png" alt="chucker icon" width="50%"/>
+  <img src="assets/ic_mapping_sample_1.png" alt="Chucker Menu Item" width="50%"/>
 </p>
 
 
